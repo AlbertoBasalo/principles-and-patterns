@@ -14,6 +14,7 @@
     "outDir": "./dist/",
     "types": ["node", "jest"],
     "lib": ["ES6", "DOM"],
+    "baseUrl": ".",
     "paths": {
       "@ab/*": ["./src/*"]
     }
