@@ -18,6 +18,8 @@
 
 ```terminal
 ts-node .\src\1-structural\1-singleton\singleton-static.ts
+ts-node .\src\1-structural\1-singleton\singleton-instance.ts
+ts-node .\src\1-structural\1-singleton\singleton-value.ts
 ```
 
 - Application configuration
