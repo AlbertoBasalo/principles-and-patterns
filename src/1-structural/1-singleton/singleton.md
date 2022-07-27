@@ -22,6 +22,8 @@ ts-node .\src\1-structural\1-singleton\singleton-instance.ts
 ts-node .\src\1-structural\1-singleton\singleton-value.ts
 ```
 
+## Practice
+
 - Application configuration
 - Database connection
 - Simple state management
