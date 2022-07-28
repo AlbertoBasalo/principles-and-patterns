@@ -11,7 +11,7 @@
 ## Examples
 
 ```terminal
-ts-node .\src\1-structural\3-builder\builder.ts
+ts-node .\src\1-creational\3-builder\builder.ts
 ```
 
 

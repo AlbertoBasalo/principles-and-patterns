@@ -37,4 +37,3 @@ export class Client {
   }
 }
 new Client().doStuff();
-// ts-node .\src\1-structural\2-factory\concrete-factory.ts

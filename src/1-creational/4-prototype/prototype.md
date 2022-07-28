@@ -12,7 +12,7 @@
 ## Examples
 
 ```terminal
-ts-node .\src\1-structural\4-prototype\prototype.ts
+ts-node .\src\1-creational\4-prototype\prototype.ts
 ```
 
 ## Practice

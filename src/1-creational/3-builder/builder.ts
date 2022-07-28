@@ -6,46 +6,46 @@ export class Product {
   public listProperty?: any[];
 }
 
-export interface ProductBuilder {
-  setId(id: string): ProductBuilder;
-  setTimestamp(timestamp: number): ProductBuilder;
-  setName(name: string): ProductBuilder;
-  setSingleProperty(singleProperty: any): ProductBuilder;
-  addListProperty(listProperty: any): ProductBuilder;
-  removeListProperty(listProperty: any): ProductBuilder;
+export interface BuildProduct {
+  setId(id: string): BuildProduct;
+  setTimestamp(timestamp: number): BuildProduct;
+  setName(name: string): BuildProduct;
+  setSingleProperty(singleProperty: any): BuildProduct;
+  addListProperty(listProperty: any): BuildProduct;
+  removeListProperty(listProperty: any): BuildProduct;
   build(): Product;
 }
 
-class ProductBuilderImpl implements ProductBuilder {
+class ProductBuilder implements BuildProduct {
   private product: Product = new Product();
 
-  public setId(id: string): ProductBuilder {
+  public setId(id: string): BuildProduct {
     this.product.id = id;
     return this;
   }
 
-  public setTimestamp(timestamp: number): ProductBuilder {
+  public setTimestamp(timestamp: number): BuildProduct {
     this.product.timestamp = timestamp;
     return this;
   }
 
-  public setName(name: string): ProductBuilder {
+  public setName(name: string): BuildProduct {
     this.product.name = name;
     return this;
   }
 
-  public setSingleProperty(singleProperty: any): ProductBuilder {
+  public setSingleProperty(singleProperty: any): BuildProduct {
     this.product.singleProperty = singleProperty;
     return this;
   }
 
-  public addListProperty(listProperty: any): ProductBuilder {
+  public addListProperty(listProperty: any): BuildProduct {
     this.product.listProperty = this.product.listProperty || [];
     this.product.listProperty.push(listProperty);
     return this;
   }
 
-  public removeListProperty(listProperty: any): ProductBuilder {
+  public removeListProperty(listProperty: any): BuildProduct {
     this.product.listProperty = this.product.listProperty || [];
     this.product.listProperty.splice(this.product.listProperty.indexOf(listProperty), 1);
     return this;
@@ -57,7 +57,7 @@ class ProductBuilderImpl implements ProductBuilder {
 }
 
 class Director {
-  private builder: ProductBuilder = new ProductBuilderImpl();
+  private builder: BuildProduct = new ProductBuilder();
   public build1With2Items(): Product {
     return this.builder
       .setId("1")
@@ -86,7 +86,7 @@ class Client {
     console.log(product);
   }
   public buildUsingBuilder(): void {
-    const product = new ProductBuilderImpl()
+    const product = new ProductBuilder()
       .setId("1")
       .setTimestamp(1)
       .setName("Product 1")

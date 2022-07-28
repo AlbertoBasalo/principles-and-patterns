@@ -29,5 +29,3 @@ class ClientB {
   }
 }
 new ClientB().doStuff();
-
-// ts-node .\src\1-structural\1-singleton\singleton-static.ts
