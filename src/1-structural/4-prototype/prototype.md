@@ -1,5 +1,7 @@
 # Prototype
 
+> Related to flyweight pattern
+
 ## Links
 
 - https://sbcode.net/typescript/prototype/
@@ -9,7 +11,9 @@
 
 ## Examples
 
-> Relate to flyweight pattern
+```terminal
+ts-node .\src\1-structural\4-prototype\prototype.ts
+```
 
 ## Practice
 

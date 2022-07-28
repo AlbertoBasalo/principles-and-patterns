@@ -1,4 +1,4 @@
-class Product {
+export class Product {
   public id: string = "";
   public timestamp: number = 0;
   public name: string = "";
@@ -6,7 +6,7 @@ class Product {
   public listProperty?: any[];
 }
 
-interface ProductBuilder {
+export interface ProductBuilder {
   setId(id: string): ProductBuilder;
   setTimestamp(timestamp: number): ProductBuilder;
   setName(name: string): ProductBuilder;

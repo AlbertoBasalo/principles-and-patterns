@@ -1,5 +1,7 @@
 # Factory
 
+> Related to strategy pattern
+
 ## Links
 
 - https://sbcode.net/typescript/factory/
