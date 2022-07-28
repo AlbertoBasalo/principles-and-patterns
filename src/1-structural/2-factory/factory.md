@@ -13,8 +13,8 @@
 ## Examples
 
 ```terminal
-// ts-node .\src\1-structural\2-factory\concrete-factory.ts
-// ts-node .\src\1-structural\2-factory\abstract-factory.ts
+ts-node .\src\1-structural\2-factory\concrete-factory.ts
+ts-node .\src\1-structural\2-factory\abstract-factory.ts
 ```
 
 ## Practice

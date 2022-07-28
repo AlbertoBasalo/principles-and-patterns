@@ -10,7 +10,10 @@
   
 ## Examples
 
-> Relate to strategy pattern
+```terminal
+ts-node .\src\1-structural\3-builder\builder.ts
+```
+
 
 ## Practice
 
