@@ -17,11 +17,7 @@
     "url": "https://github.com/LabsAdemy/principles-and-patterns/issues"
   },
   "scripts": {
-    "start": "node ./dist/main.js",
-    "test": "jest --coverage",
     "build": "tsc -p tsconfig.json",
-    "dev": "ts-node ./src/main.ts",
-    "test:dev": "jest --watch",
     "ts-node": "ts-node",
     "format": "prettier --write \"./**/*.{ts,json}\"",
     "lint": "eslint src --ext .ts",
