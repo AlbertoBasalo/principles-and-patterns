@@ -1,20 +1,20 @@
 {
-  "name": "quark",
-  "version": "1.6.6",
-  "description": "Fundamental project template",
+  "name": "principles-and-patterns",
+  "version": "1.22.8",
+  "description": "Design patterns and principles for TypeScript development",
   "author": {
     "name": "Alberto Basalo",
     "email": "albertobasalo@hotmail.com",
     "url": "https://twitter.com/albertobasalo"
   },
-  "homepage": "https://github.com/AtomicBuilders/quark#readme",
+  "homepage": "https://github.com/LabsAdemy/principles-and-patterns#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AtomicBuilders/quark.git"
+    "url": "git+https://github.com/LabsAdemy/principles-and-patterns.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AtomicBuilders/quark/issues"
+    "url": "https://github.com/LabsAdemy/principles-and-patterns/issues"
   },
   "scripts": {
     "start": "node ./dist/main.js",
