@@ -12,7 +12,8 @@
 ## Examples
 
 ```terminal
-ts-node .\src\1-creational\4-prototype\prototype.ts
+npm run 1.2.1
+npm run 1.2.2
 ```
 
 ## Practice

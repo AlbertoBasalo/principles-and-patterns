@@ -10,30 +10,11 @@ export class Product implements Prototype<Product> {
   public listProperty: any[] = [];
 
   public clone(): Product {
-    const clone = new Product();
-    // this.shallowClone(clone);
-    this.deepClone(clone);
+    const clone = JSON.parse(JSON.stringify(this));
+    clone.id = Math.random().toString();
+    clone.timestamp = new Date().getTime();
     return clone;
   }
-
-  private shallowClone(clone: Product) {
-    clone.id = Math.random().toString();
-    clone.timestamp = new Date().getTime();
-    clone.name = this.name;
-    clone.singleProperty = this.singleProperty;
-    clone.listProperty = this.listProperty;
-  }
-
-  private deepClone(clone: Product) {
-    clone.id = Math.random().toString();
-    clone.timestamp = new Date().getTime();
-    clone.name = this.name;
-    clone.singleProperty = this.singleProperty;
-    clone.listProperty = [];
-    // ToDo: deep clone listProperty items
-    clone.listProperty = this.listProperty.map(item => item);
-  }
-
 }
 
 export class Client {
