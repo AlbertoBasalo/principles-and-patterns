@@ -17,12 +17,15 @@
 ## Examples
 
 ```terminal
-ts-node .\src\1-creational\1-singleton\singleton-static.ts
-ts-node .\src\1-creational\1-singleton\singleton-instance.ts
-ts-node .\src\1-creational\1-singleton\singleton-value.ts
+# Examples
+npm run 1-1-1
+npm run 1-1-2
+npm run 1-1-3
+# Tasks
+
 ```
 
-## Practice
+## Tasks
 
 - Application configuration
 - Database connection

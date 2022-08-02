@@ -1,12 +1,8 @@
 export class Singleton {
   private static instance: Singleton;
   public readonly timestamp: number = Date.now();
-  constructor() {
-    if (!Singleton.instance) {
-      Singleton.instance = this;
-    }
-    return Singleton.instance;
-  }
+
+  private constructor() { }
 
   public static getInstance(): Singleton {
     if (!Singleton.instance) {
@@ -27,13 +23,11 @@ ClientA.main();
 
 class ClientB {
   public doStuff(): void {
-    const instance = new Singleton();
+    const instance = Singleton.getInstance();
     console.log(instance.timestamp);
-    const instance2 = new Singleton();
+    const instance2 = Singleton.getInstance();
     console.log(instance2.timestamp);
   }
 }
 new ClientB().doStuff();
-
-
-
+new ClientB().doStuff();
