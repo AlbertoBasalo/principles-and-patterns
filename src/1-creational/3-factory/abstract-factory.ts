@@ -1,47 +1,44 @@
-
-
 export interface ISomething {
-  someProperty: any;
-  someMethod(x: any): any;
+  someProperty: unknown;
+  someMethod(x: unknown): unknown;
 }
 
 export interface IAnything {
-  anyProperty: any;
-  anyMethod(x: any): any;
+  unknownProperty: unknown;
+  unknownMethod(x: unknown): unknown;
 }
 
 class ConcreteSomethingA implements ISomething {
-  public someProperty: any = "A";
-  public someMethod(x: any): any {
+  public someProperty: unknown = "A";
+  public someMethod(x: unknown): unknown {
     return x;
   }
 }
 
 class ConcreteSomethingB implements ISomething {
-  public someProperty: any = "B";
-  public someMethod(x: any): any {
+  public someProperty: unknown = "B";
+  public someMethod(x: unknown): unknown {
     return x;
   }
 }
 
 class ConcreteAnythingA implements IAnything {
-  public anyProperty: any = "A";
-  public anyMethod(x: any): any {
+  public unknownProperty: unknown = "A";
+  public unknownMethod(x: unknown): unknown {
     return x;
   }
 }
 
 class ConcreteAnythingB implements IAnything {
-  public anyProperty: any = "B";
-  public anyMethod(x: any): any {
+  public unknownProperty: unknown = "B";
+  public unknownMethod(x: unknown): unknown {
     return x;
   }
 }
 
-
 class SomethingFactory {
   public create(type: string): ISomething {
-    if (type === 'A') {
+    if (type === "A") {
       return new ConcreteSomethingA();
     } else {
       return new ConcreteSomethingB();
@@ -51,7 +48,7 @@ class SomethingFactory {
 
 class AnythingFactory {
   public create(type: string): IAnything {
-    if (type === 'A') {
+    if (type === "A") {
       return new ConcreteAnythingA();
     } else {
       return new ConcreteAnythingB();
@@ -61,7 +58,7 @@ class AnythingFactory {
 
 class Factory {
   public create(type: string, subType: string): ISomething | IAnything {
-    if (type === 'Something') {
+    if (type === "Something") {
       return new SomethingFactory().create(subType);
     } else {
       return new AnythingFactory().create(subType);
@@ -72,9 +69,9 @@ class Factory {
 class Client {
   public doStuff(): void {
     const factory = new Factory();
-    const instance = factory.create('Something', 'A');
+    const instance = factory.create("Something", "A");
     console.log(instance);
-    const instance2 = factory.create('Anything', 'B');
+    const instance2 = factory.create("Anything", "B");
     console.log(instance2);
   }
 }

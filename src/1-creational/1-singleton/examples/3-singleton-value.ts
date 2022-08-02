@@ -1,8 +1,8 @@
 export class Singleton {
   private static instance: Singleton;
-  public readonly value: any;
+  public readonly value: unknown;
 
-  public constructor(value: any) {
+  public constructor(value: unknown) {
     if (!Singleton.instance) {
       this.value = value;
       Singleton.instance = this;
@@ -28,11 +28,9 @@ class ClientB {
   public doStuff(): void {
     const instance = new Singleton(2);
     console.log(instance.value);
-    const instance2 = new Singleton(3);
+    const instance2 = new Singleton(-1);
     console.log(instance2.value);
   }
 }
 new ClientB().doStuff();
 new ClientB().doStuff();
-
-

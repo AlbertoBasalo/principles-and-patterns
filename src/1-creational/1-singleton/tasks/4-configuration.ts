@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from "fs";
 import * as path from "path";
 
 export type Configuration = {
@@ -28,9 +28,8 @@ export class ConfigurationService {
     return ConfigurationService.instance;
   }
 
-
   private load() {
-    const filePath = path.resolve(__dirname, './configuration.json');
+    const filePath = path.resolve(__dirname, "./configuration.json");
     const fileContent = fs.readFileSync(filePath).toString();
     const configuration = JSON.parse(fileContent);
     return configuration;
@@ -38,11 +37,7 @@ export class ConfigurationService {
 }
 
 export class App {
-
   private configurationService = new ConfigurationService();
-
-  constructor() {
-  }
 
   public run() {
     console.log("App running...");

@@ -36,5 +36,3 @@ class ClientB {
 }
 new ClientB().doStuff();
 new ClientB().doStuff();
-
-

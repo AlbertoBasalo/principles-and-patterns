@@ -14,6 +14,7 @@
 ```terminal
 npm run 1.2.1
 npm run 1.2.2
+npm run 1.2.3
 ```
 
 ## Practice

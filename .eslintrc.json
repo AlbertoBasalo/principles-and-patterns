@@ -3,20 +3,14 @@
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:jest/all",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": [
-    "prettier",
-    "jest",
-    "@typescript-eslint"
-  ],
+  "plugins": ["prettier", "@typescript-eslint"],
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "jest/globals": true
+    "node": true
   },
   "globals": {},
   "rules": {
@@ -26,45 +20,19 @@
         "max": 10
       }
     ],
-    "curly": [
-      "warn",
-      "all"
-    ],
-    "max-depth": [
-      "warn",
-      2
-    ],
-    "max-lines": [
-      "warn",
-      120
-    ],
-    "max-lines-per-function": [
-      "warn",
-      24
-    ],
-    "max-statements": [
-      "warn",
-      12
-    ],
-    "max-nested-callbacks": [
-      "warn",
-      2
-    ],
-    "max-params": [
-      "warn",
-      4
-    ],
+    "curly": ["warn", "all"],
+    "max-depth": ["warn", 1],
+    "max-lines": ["warn", 100],
+    "max-lines-per-function": ["warn", 20],
+    "max-statements": ["warn", 10],
+    "max-nested-callbacks": ["warn", 1],
+    "max-params": ["warn", 2],
     "no-magic-numbers": [
       "warn",
       {
         "detectObjects": false,
         "enforceConst": true,
-        "ignore": [
-          -1,
-          0,
-          1,
-          2
-        ],
+        "ignore": [-1, 0, 1, 2, 100],
         "ignoreArrayIndexes": true
       }
     ],
@@ -83,7 +51,9 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-useless-constructor": "warn",
+    "@typescript-eslint/no-empty-function": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2021,

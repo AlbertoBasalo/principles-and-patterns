@@ -9,11 +9,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "editor.bracketPairColorization.enabled": true,
-  "editor.codeActionsOnSave": [
-    "source.addMissingImports",
-    "source.organizeImports",
-    "source.fixAll"
-  ],
+  "editor.codeActionsOnSave": ["source.addMissingImports", "source.organizeImports", "source.fixAll"],
   "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": true,
   "editor.fontFamily": " 'Fira Code', 'Cascadia Mono PL', Consolas, 'Courier New', monospace",
@@ -78,24 +74,9 @@
     "**/env": true,
     "**/venv": true
   },
-  "spellright.documentTypes": [
-    "markdown",
-    "latex",
-    "plaintext",
-    "html",
-    "typescript"
-  ],
-  "spellright.ignoreFiles": [
-    "**/.gitignore",
-    "**/.spellignore",
-    "/node_modules/",
-    "/dist/",
-    "/tmp/"
-  ],
-  "spellright.language": [
-    "en",
-    "es"
-  ],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext", "html", "typescript"],
+  "spellright.ignoreFiles": ["**/.gitignore", "**/.spellignore", "/node_modules/", "/dist/", "/tmp/"],
+  "spellright.language": ["en", "es"],
   "window.title": "${dirty}${activeEditorMedium}",
   "workbench.colorCustomizations": {
     "editorError.foreground": "#f85149",
@@ -121,11 +102,5 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "cSpell.userWords": [
-    "albertobasalo",
-    "Basalo",
-    "cloner",
-    "Intelli",
-    "Parens"
-  ]
+  "cSpell.userWords": ["albertobasalo", "Basalo", "cloner", "Intelli", "Parens"]
 }

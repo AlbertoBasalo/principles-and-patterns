@@ -7,6 +7,7 @@ export class Booking {
   public readonly currency: string = "";
   public readonly status: string = "";
 
+  // eslint-disable-next-line max-params
   constructor(
     id: string,
     destination: string,

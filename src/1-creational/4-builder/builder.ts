@@ -1,18 +1,17 @@
 export class Product {
-  public id: string = "";
-  public timestamp: number = 0;
-  public name: string = "";
-  public singleProperty?: any;
-  public listProperty?: any[];
+  public id = "";
+  public timestamp = 0;
+  public name = "";
+  public singleProperty?: unknown;
+  public listProperty?: unknown[];
 }
 
 export interface BuildProduct {
   setId(id: string): BuildProduct;
   setTimestamp(timestamp: number): BuildProduct;
   setName(name: string): BuildProduct;
-  setSingleProperty(singleProperty: any): BuildProduct;
-  addListProperty(listProperty: any): BuildProduct;
-  removeListProperty(listProperty: any): BuildProduct;
+  setSingleProperty(singleProperty: unknown): BuildProduct;
+  addListProperty(listProperty: unknown): BuildProduct;
   build(): Product;
 }
 
@@ -34,20 +33,14 @@ class ProductBuilder implements BuildProduct {
     return this;
   }
 
-  public setSingleProperty(singleProperty: any): BuildProduct {
+  public setSingleProperty(singleProperty: unknown): BuildProduct {
     this.product.singleProperty = singleProperty;
     return this;
   }
 
-  public addListProperty(listProperty: any): BuildProduct {
+  public addListProperty(listProperty: unknown): BuildProduct {
     this.product.listProperty = this.product.listProperty || [];
     this.product.listProperty.push(listProperty);
-    return this;
-  }
-
-  public removeListProperty(listProperty: any): BuildProduct {
-    this.product.listProperty = this.product.listProperty || [];
-    this.product.listProperty.splice(this.product.listProperty.indexOf(listProperty), 1);
     return this;
   }
 
@@ -85,8 +78,8 @@ class Client {
     const product = director.build1With2Items();
     console.log(product);
   }
-  public buildUsingBuilder(): void {
-    const product = new ProductBuilder()
+  public buildUsingBuilder(): Product {
+    return new ProductBuilder()
       .setId("1")
       .setTimestamp(1)
       .setName("Product 1")
@@ -94,10 +87,10 @@ class Client {
       .addListProperty("listProperty1")
       .addListProperty("listProperty2")
       .build();
-    console.log(product);
   }
 }
 
 const client = new Client();
 client.buildUsingDirector();
-client.buildUsingBuilder();
+const product = client.buildUsingBuilder();
+console.log(product);
