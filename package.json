@@ -1,20 +1,20 @@
 {
   "name": "principles-and-patterns",
   "version": "1.22.8",
-  "description": "Design patterns and principles for TypeScript development",
+  "description": "Software principles and design patterns for TypeScript development",
   "author": {
     "name": "Alberto Basalo",
     "email": "albertobasalo@hotmail.com",
     "url": "https://twitter.com/albertobasalo"
   },
-  "homepage": "https://github.com/LabsAdemy/principles-and-patterns#readme",
+  "homepage": "https://github.com/AlbertoBasalo/principles-and-patterns#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LabsAdemy/principles-and-patterns.git"
+    "url": "git+https://github.com/AlbertoBasalo/principles-and-patterns.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LabsAdemy/principles-and-patterns/issues"
+    "url": "https://github.com/AlbertoBasalo/principles-and-patterns/issues"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
