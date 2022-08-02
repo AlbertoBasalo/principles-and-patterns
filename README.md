@@ -3,8 +3,8 @@
 > Advanced clean code techniques for a better codebase.
 
 ```terminal
-git clone https://github.com/LabsAdemy/principles-and-patterns.git your-project
-cd your-project
+git clone https://github.com/AlbertoBasalo/principles-and-patterns.git 
+cd principles-and-patterns
 npm install
 ```
 
@@ -33,13 +33,11 @@ Use GitHub issues for tracking _User Stories_ and _developer tasks_.
 
 ### 📦 Commits and release
 
-- Use [standard-version](https://www.npmjs.com/package/standard-version) to produce a changelog file from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Use the [standard-version utility](https://www.npmjs.com/package/standard-version) to produce a changelog file from [Conventional Commits guides](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### 💅 Code style with Prettier
 
-- Installed and configured prettier
-
-> Recommended [prettier extension](https://github.com/prettier/prettier-vscode)
+- Installed and configured the _PrettierExtension_
 
 ### 📐 Code linting with esLint
 
