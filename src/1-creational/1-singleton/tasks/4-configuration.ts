@@ -28,9 +28,6 @@ export class ConfigurationService {
     return ConfigurationService.instance;
   }
 
-  public static getInstance(): ConfigurationService {
-    return ConfigurationService.instance;
-  }
 
   private load() {
     const filePath = path.resolve(__dirname, './configuration.json');
@@ -56,14 +53,10 @@ export class App {
 }
 
 export class Repository {
-  private configurationService = new ConfigurationService();
-
-  constructor() {
-  }
-
   public fetch() {
+    const configurationService = new ConfigurationService();
     console.log("Fetching data from repository");
-    console.log(this.configurationService.configuration?.repository);
+    console.log(configurationService.configuration?.repository);
   }
 }
 
