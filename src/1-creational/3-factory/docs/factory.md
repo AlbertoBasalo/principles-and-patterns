@@ -22,7 +22,7 @@ npm run 1-3-2
 
 ```
 
-## Practice
+## Tasks
 
 - [ ] Products
 - [ ] Loggers

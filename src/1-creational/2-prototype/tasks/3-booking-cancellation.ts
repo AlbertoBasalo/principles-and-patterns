@@ -1,38 +1,18 @@
 type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
 
 export class Booking {
-  public readonly id: string = "";
-  public readonly destination: string = "";
-  public readonly departureDate: Date = new Date();
-  public readonly returnDate: Date = new Date();
-  public readonly price: number = 0;
-  public readonly currency: string = "";
-  public readonly status: BookingStatus = "";
-  public readonly createdOn: Date | null;
-  public readonly updatedOn: Date | null;
-
-  // eslint-disable-next-line max-lines-per-function, max-params
+  // eslint-disable-next-line max-params
   constructor(
-    id: string,
-    destination: string,
-    departureDate: Date,
-    returnDate: Date,
-    price: number,
-    currency: string,
-    status: BookingStatus,
-    createdOn: Date | null = new Date(),
-    updatedOn: Date | null = null
-  ) {
-    this.id = id;
-    this.destination = destination;
-    this.departureDate = departureDate;
-    this.returnDate = returnDate;
-    this.price = price;
-    this.currency = currency;
-    this.status = status;
-    this.createdOn = createdOn;
-    this.updatedOn = updatedOn;
-  }
+    public readonly id: string,
+    public readonly destination: string,
+    public readonly departureDate: Date,
+    public readonly returnDate: Date,
+    public readonly price: number,
+    public readonly currency: string,
+    public readonly status: BookingStatus,
+    public readonly createdOn: Date | null = new Date(),
+    public readonly updatedOn: Date | null = null
+  ) {}
 
   public cancel(): Booking {
     const cancelledBooking = new Booking(
