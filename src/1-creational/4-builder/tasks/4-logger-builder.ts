@@ -61,6 +61,8 @@ class LoggerBuilder {
     return this;
   }
   public build(): Logger {
+    // ToDo: default values
+    // ToDo: Check incompatibilities
     return this.logger;
   }
 }
