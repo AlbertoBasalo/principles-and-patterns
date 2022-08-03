@@ -19,11 +19,11 @@
 npm run 1-3-1
 npm run 1-3-2
 # Tasks
-
+npm run 1-3-3
+npm run 1-3-4
 ```
 
 ## Tasks
 
-- [ ] Products
-- [ ] Loggers
+- [x] Logger writers (console, file) logger formatters (json, simple)
 - [ ] Dependency injection

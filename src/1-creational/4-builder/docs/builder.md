@@ -16,10 +16,11 @@ npm run 1-4-1
 npm run 1-4-2
 npm run 1-4-3
 # Tasks
-
+npm run 1-4-4
+npm run 1-4-5
 ```
 
 ## Practice
 
+- [x] Logger
 - [ ] Booking
-- [ ] Invoice
