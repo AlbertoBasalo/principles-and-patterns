@@ -19,7 +19,7 @@ export class Singleton {
 
 class ClientA {
   public static main(): void {
-    const instance = new Singleton();
+    const instance = Singleton.getInstance();
     console.log(instance.timestamp);
   }
 }
