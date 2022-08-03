@@ -14,13 +14,16 @@
 
 ## Examples
 
-```terminal
-ts-node .\src\1-creational\2-factory\concrete-factory.ts
-ts-node .\src\1-creational\2-factory\abstract-factory.ts
+```bash
+# Examples
+npm run 1-3-1
+npm run 1-3-2
+# Tasks
+
 ```
 
 ## Practice
 
-- Products
-- Loggers
-- Dependency injection
+- [ ] Products
+- [ ] Loggers
+- [ ] Dependency injection

@@ -16,7 +16,7 @@
 
 ## Examples
 
-```terminal
+```bash
 # Examples
 npm run 1-1-1
 npm run 1-1-2
@@ -27,6 +27,8 @@ npm run 1-1-4
 
 ## Tasks
 
-- Application configuration
-- Database connection
-- Simple state management
+- [x] Application configuration
+
+- [ ] Database connection
+
+- [ ] Simple state management

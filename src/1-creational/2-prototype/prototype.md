@@ -11,13 +11,16 @@
 
 ## Examples
 
-```terminal
-npm run 1.2.1
-npm run 1.2.2
-npm run 1.2.3
+```bash
+# Examples
+npm run 1-2-1
+npm run 1-2-2
+# Tasks
+npm run 1-2-3
 ```
 
 ## Practice
 
-- Booking cancellation
-- Invoice address / customer address
+- [x] Booking cancellation
+
+- [ ] Invoice address / customer address

@@ -7,15 +7,19 @@
 - https://github.com/Vincent-Pang/builder-pattern
 - https://betterprogramming.pub/lets-look-at-the-builder-pattern-in-typescript-fb9cf202c04d
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#constructor-builder-pattern-creational-design
-  
+
 ## Examples
 
-```terminal
-ts-node .\src\1-creational\3-builder\builder.ts
-```
+```bash
+# Examples
+npm run 1-4-1
+npm run 1-4-2
+npm run 1-4-3
+# Tasks
 
+```
 
 ## Practice
 
-- Booking
-- Invoice
+- [ ] Booking
+- [ ] Invoice
