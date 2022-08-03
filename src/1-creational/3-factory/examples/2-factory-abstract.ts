@@ -1,38 +1,38 @@
 export interface ISomething {
-  someProperty: unknown;
-  someMethod(x: unknown): unknown;
+  someProperty: string;
+  someMethod(x: string): string;
 }
 
 export interface IAnything {
-  unknownProperty: unknown;
-  unknownMethod(x: unknown): unknown;
+  anythingProperty: string;
+  anythingMethod(x: string): string;
 }
 
 class ConcreteSomethingA implements ISomething {
-  public someProperty: unknown = "A";
-  public someMethod(x: unknown): unknown {
-    return x;
+  public someProperty = "🟩 A";
+  public someMethod(param: string): string {
+    return param.toUpperCase();
   }
 }
 
 class ConcreteSomethingB implements ISomething {
-  public someProperty: unknown = "B";
-  public someMethod(x: unknown): unknown {
-    return x;
+  public someProperty = "🟦 B";
+  public someMethod(param: string): string {
+    return param;
   }
 }
 
 class ConcreteAnythingA implements IAnything {
-  public unknownProperty: unknown = "A";
-  public unknownMethod(x: unknown): unknown {
-    return x;
+  public anythingProperty = "🟢 A";
+  public anythingMethod(param: string): string {
+    return param;
   }
 }
 
 class ConcreteAnythingB implements IAnything {
-  public unknownProperty: unknown = "B";
-  public unknownMethod(x: unknown): unknown {
-    return x;
+  public anythingProperty = "🔵 B";
+  public anythingMethod(param: string): string {
+    return param.toLocaleLowerCase();
   }
 }
 
@@ -69,10 +69,13 @@ class Factory {
 class Client {
   public doStuff(): void {
     const factory = new Factory();
-    const instance = factory.create("Something", "A");
-    console.log(instance);
-    const instance2 = factory.create("Anything", "B");
-    console.log(instance2);
+
+    const instanceA = factory.create("Something", "A") as ISomething;
+    console.log("🅰️ Some property", instanceA.someProperty);
+    console.log("🅰️ Some method", instanceA.someMethod("Hello"));
+    const instanceB = factory.create("Anything", "B") as IAnything;
+    console.log("🅱️ Any property", instanceB.anythingProperty);
+    console.log("🅱️ Any method", instanceB.anythingMethod("Goodbye"));
   }
 }
 new Client().doStuff();
