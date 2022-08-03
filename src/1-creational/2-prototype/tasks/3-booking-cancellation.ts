@@ -1,3 +1,5 @@
+type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
+
 export class Booking {
   public readonly id: string = "";
   public readonly destination: string = "";
@@ -5,9 +7,11 @@ export class Booking {
   public readonly returnDate: Date = new Date();
   public readonly price: number = 0;
   public readonly currency: string = "";
-  public readonly status: string = "";
+  public readonly status: BookingStatus = "";
+  public readonly createdOn: Date | null;
+  public readonly updatedOn: Date | null;
 
-  // eslint-disable-next-line max-params
+  // eslint-disable-next-line max-lines-per-function, max-params
   constructor(
     id: string,
     destination: string,
@@ -15,7 +19,9 @@ export class Booking {
     returnDate: Date,
     price: number,
     currency: string,
-    status: string
+    status: BookingStatus,
+    createdOn: Date | null = new Date(),
+    updatedOn: Date | null = null
   ) {
     this.id = id;
     this.destination = destination;
@@ -24,6 +30,8 @@ export class Booking {
     this.price = price;
     this.currency = currency;
     this.status = status;
+    this.createdOn = createdOn;
+    this.updatedOn = updatedOn;
   }
 
   public cancel(): Booking {
@@ -34,7 +42,9 @@ export class Booking {
       this.returnDate,
       this.price,
       this.currency,
-      "cancelled"
+      "Cancelled",
+      this.createdOn,
+      new Date()
     );
     return cancelledBooking;
   }
@@ -42,17 +52,19 @@ export class Booking {
 
 export class App {
   public getBooking(): Booking {
-    const booking = new Booking(Math.random().toString(), "London", new Date(), new Date(), 100, "GBP", "Pending");
-    console.log("Booking:", booking);
+    const bookingId = Math.random().toString();
+    const booking = new Booking(bookingId, "London", new Date(), new Date(), 100, "GBP", "Pending");
     return booking;
   }
 
-  public cancelBooking(booking: Booking): void {
+  public cancelBooking(booking: Booking): Booking {
     const cancelled = booking.cancel();
-    console.log("Cancelled booking:", cancelled);
+    return cancelled;
   }
 }
 
 const app = new App();
 const booking = app.getBooking();
-app.cancelBooking(booking);
+console.log("💚 Booking:", booking);
+const cancelled = app.cancelBooking(booking);
+console.log("🚫 Cancelled booking:", cancelled);
