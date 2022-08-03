@@ -1,35 +1,35 @@
-export interface ISomething {
+export interface Something {
   someProperty: string;
   someMethod(x: string): string;
 }
 
-export interface IAnything {
+export interface Anything {
   anythingProperty: string;
   anythingMethod(x: string): string;
 }
 
-class ConcreteSomethingA implements ISomething {
+class ConcreteSomethingA implements Something {
   public someProperty = "🟩 A";
   public someMethod(param: string): string {
     return param.toUpperCase();
   }
 }
 
-class ConcreteSomethingB implements ISomething {
+class ConcreteSomethingB implements Something {
   public someProperty = "🟦 B";
   public someMethod(param: string): string {
     return param;
   }
 }
 
-class ConcreteAnythingA implements IAnything {
+class ConcreteAnythingA implements Anything {
   public anythingProperty = "🟢 A";
   public anythingMethod(param: string): string {
     return param;
   }
 }
 
-class ConcreteAnythingB implements IAnything {
+class ConcreteAnythingB implements Anything {
   public anythingProperty = "🔵 B";
   public anythingMethod(param: string): string {
     return param.toLocaleLowerCase();
@@ -37,7 +37,7 @@ class ConcreteAnythingB implements IAnything {
 }
 
 class SomethingFactory {
-  public create(type: string): ISomething {
+  public create(type: string): Something {
     if (type === "A") {
       return new ConcreteSomethingA();
     } else {
@@ -47,7 +47,7 @@ class SomethingFactory {
 }
 
 class AnythingFactory {
-  public create(type: string): IAnything {
+  public create(type: string): Anything {
     if (type === "A") {
       return new ConcreteAnythingA();
     } else {
@@ -57,7 +57,7 @@ class AnythingFactory {
 }
 
 class Factory {
-  public create(type: string, subType: string): ISomething | IAnything {
+  public create(type: string, subType: string): Something | Anything {
     if (type === "Something") {
       return new SomethingFactory().create(subType);
     } else {
@@ -70,10 +70,10 @@ class Client {
   public doStuff(): void {
     const factory = new Factory();
 
-    const instanceA = factory.create("Something", "A") as ISomething;
+    const instanceA = factory.create("Something", "A") as Something;
     console.log("🅰️ Some property", instanceA.someProperty);
     console.log("🅰️ Some method", instanceA.someMethod("Hello"));
-    const instanceB = factory.create("Anything", "B") as IAnything;
+    const instanceB = factory.create("Anything", "B") as Anything;
     console.log("🅱️ Any property", instanceB.anythingProperty);
     console.log("🅱️ Any method", instanceB.anythingMethod("Goodbye"));
   }

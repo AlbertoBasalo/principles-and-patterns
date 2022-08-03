@@ -1,16 +1,16 @@
-export interface ISomething {
+export interface Something {
   someProperty: string;
   someMethod(param: string): string;
 }
 
-export class ConcreteA implements ISomething {
+export class ConcreteA implements Something {
   public someProperty = "A";
   public someMethod(param: string): string {
     return param;
   }
 }
 
-export class ConcreteB implements ISomething {
+export class ConcreteB implements Something {
   public someProperty = "B";
   public someMethod(param: string): string {
     return param.toLocaleLowerCase();
@@ -18,7 +18,7 @@ export class ConcreteB implements ISomething {
 }
 
 export class Factory {
-  public create(type: string): ISomething {
+  public create(type: string): Something {
     if (type === "A") {
       return new ConcreteA();
     } else {
