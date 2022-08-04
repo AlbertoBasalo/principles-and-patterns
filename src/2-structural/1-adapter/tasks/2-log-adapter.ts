@@ -1,4 +1,4 @@
-import { CommonEventFormatter } from "./common-event.library";
+import { CommonEventService } from "./common-event.library";
 
 type LogCategory = "info" | "error" | "debug";
 type LogEntry = {
@@ -26,12 +26,12 @@ class JsonFormatter implements Formatter {
 }
 
 class CommonEventFormatAdapter implements Formatter {
-  private readonly formatter: CommonEventFormatter = new CommonEventFormatter();
+  private readonly commonEventService: CommonEventService = new CommonEventService();
 
   format(entry: LogEntry): string {
     const commonEvent = this.adaptLogEntryToCommonEvent(entry);
-    const eventMessage = this.formatter.createMessage(commonEvent);
-    const logMessage = this.adaptCommonEventToLogMessage(eventMessage);
+    const commonEventMessage = this.commonEventService.createMessage(commonEvent);
+    const logMessage = this.adaptCommonEventToLogMessage(commonEventMessage);
     return logMessage;
   }
 
@@ -61,14 +61,14 @@ export class Client {
   constructor() {
     this.logger = new Logger(new CommonEventFormatAdapter(), new ConsoleWriter());
   }
-  public log(entry: LogEntry) {
-    this.logger.log(entry);
+  public doThings() {
+    this.logger.log({
+      category: "info",
+      message: "Hello World",
+      timestamp: new Date(),
+    });
   }
 }
 
 const client = new Client();
-client.log({
-  category: "info",
-  message: "Hello World",
-  timestamp: new Date(),
-});
+client.doThings();
