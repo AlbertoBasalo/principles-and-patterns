@@ -34,6 +34,7 @@
     "1-4-4": "ts-node ./src/1-creational/4-builder/tasks/4-logger-builder.ts",
     "1-4-5": "ts-node ./src/1-creational/4-builder/tasks/5-logger-director.ts",
     "2-1-1": "ts-node ./src/2-structural/1-adapter/examples/1-adapter.ts",
+    "2-1-2": "ts-node ./src/2-structural/1-adapter/tasks/2-log-adapter.ts",
     "build": "tsc -p tsconfig.json",
     "ts-node": "ts-node",
     "format": "prettier --write \"./**/*.{ts,json}\"",

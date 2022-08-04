@@ -17,5 +17,5 @@
 
 ## Tasks
 
-- [ ] Adapt a third party logger writer
+- [x] Adapt a third party logger formatter
 - [ ] Adapt a payment gateway
