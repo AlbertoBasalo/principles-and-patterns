@@ -10,10 +10,15 @@
 
 ## Examples
 
-```terminal
-ts-node .\src\2-structural\2-bridge\bridge.ts
+```bash
+# Examples
+npm run 2-2-0
+npm run 2-2-1
+# Tasks
+npm run 2-2-2
+npm run 2-2-3
 ```
 
 ## Tasks
 
-- [x] Create a bridge design pattern
+- [x] Create a bridge between travel agencies and flight operators

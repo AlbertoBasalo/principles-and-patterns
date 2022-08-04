@@ -11,8 +11,11 @@
 
 ## Examples
 
-```terminal
-
+```bash
+# Examples
+npm run 2-1-1
+# Tasks
+npm run 2-1-2
 ```
 
 ## Tasks
