@@ -1,4 +1,4 @@
-import { CommonEventFormatter } from "./common-event.format";
+import { CommonEventFormatter } from "./common-event.library";
 
 type LogCategory = "info" | "error" | "debug";
 type LogEntry = {

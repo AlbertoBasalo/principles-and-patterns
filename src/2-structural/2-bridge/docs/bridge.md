@@ -14,4 +14,6 @@
 ts-node .\src\2-structural\2-bridge\bridge.ts
 ```
 
-## Practice
+## Tasks
+
+- [x] Create a bridge design pattern
