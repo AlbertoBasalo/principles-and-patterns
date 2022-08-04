@@ -12,7 +12,10 @@
 ## Examples
 
 ```terminal
-ts-node .\src\2-structural\1-adapter\adapter.ts
+
 ```
 
-## Practice
+## Tasks
+
+- [ ] Adapt a third party logger writer
+- [ ] Adapt a payment gateway

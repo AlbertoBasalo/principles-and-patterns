@@ -46,7 +46,7 @@
     "no-nested-ternary": "warn",
     "no-unused-vars": "off",
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "endOfLine": "auto"
       }
