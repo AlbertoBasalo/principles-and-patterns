@@ -9,8 +9,15 @@
 
 ## Examples
 
-```terminal
-ts-node .\src\2-structural\4-proxy\proxy.ts
+```bash
+# Examples
+npm run 2-4-0
+npm run 2-4-1
+# Tasks
+npm run 2-4-2
+npm run 2-4-3
 ```
 
-## Practice
+## Tasks
+
+- [ ] Create a proxy to work with instead of a real one
