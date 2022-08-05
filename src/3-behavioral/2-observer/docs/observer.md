@@ -3,6 +3,7 @@
 ## Links
 
 - https://sbcode.net/typescript/observer/
+- https://javascript.plainenglish.io/design-patterns-with-typescript-examples-observer-22e5ae36be4c
 
 ## Examples
 
