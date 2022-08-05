@@ -4,8 +4,8 @@ interface Alpha {
 }
 
 class ConcreteAlpha implements Alpha {
-  propertyAlpha = "";
-  methodAlpha(param: string): string {
+  public propertyAlpha = "";
+  public methodAlpha(param: string): string {
     return param;
   }
 }
@@ -16,8 +16,8 @@ interface Bravo {
 }
 
 class ConcreteBravo implements Bravo {
-  propertyBravo = 0;
-  methodBravo(param: number): number {
+  public propertyBravo = 0;
+  public methodBravo(param: number): number {
     return param;
   }
 }
