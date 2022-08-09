@@ -43,6 +43,8 @@
     "2-3-2": "ts-node ./src/2-structural/3-decorator/tasks/2-bookings.ts",
     "2-4-0": "ts-node ./src/2-structural/4-facade/examples/0-no-facade.ts",
     "2-4-1": "ts-node ./src/2-structural/4-facade/examples/1-facade.ts",
+    "2-4-2": "ts-node ./src/2-structural/4-facade/tasks/2-no-facade-bookings.ts",
+    "2-4-3": "ts-node ./src/2-structural/4-facade/tasks/3-facade-bookings.ts",
     "build": "tsc -p tsconfig.json",
     "ts-node": "ts-node",
     "format": "prettier --write \"./**/*.{ts,json}\"",
