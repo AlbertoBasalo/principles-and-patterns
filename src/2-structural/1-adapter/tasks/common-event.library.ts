@@ -7,7 +7,7 @@ export type CommonEvent = {
 };
 
 export class CommonEventService {
-  createMessage(event: CommonEvent): string[] {
+  public createMessage(event: CommonEvent): string[] {
     const { date, host, device, severity, extension } = event;
     const timestamp = `${date.toLocaleDateString("en-us")} ${date.toLocaleTimeString("en-us")}`;
     const prefix = `${timestamp} ${host}`;
