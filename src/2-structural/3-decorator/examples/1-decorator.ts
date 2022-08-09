@@ -31,13 +31,18 @@ class Decorator implements IComponent {
 }
 
 export class Client {
-  public doSomething(): string {
+  public doThings(): string {
     const component = new Component();
-    const decorator = new Decorator(component);
-    decorator.property = "hello world";
+    component.property = "hello world";
+    return component.method(component.property);
+  }
+  public doOtherThings() {
+    const decorator = new Decorator(new Component());
+    decorator.property = "good bye";
     return decorator.method(decorator.property);
   }
 }
 
 const client = new Client();
-console.log("🧑🏼‍🎨 decorator", client.doSomething());
+console.log("🧑🏼‍🏭 component", client.doThings());
+console.log("🧑🏼‍🎨 decorator", client.doOtherThings());
