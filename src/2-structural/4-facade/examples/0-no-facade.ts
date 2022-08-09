@@ -22,6 +22,8 @@ export class Charlie {
   }
 }
 
+// ToDo: improve this example with more methods on client, and maybe even some private ones
+
 export class Client {
   public doSomething(): string {
     const alpha = new Alpha();
