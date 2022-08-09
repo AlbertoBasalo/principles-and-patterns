@@ -1,6 +1,6 @@
 # Facade
 
-## Links
+> provides a simple interface to a set of interfaces in a subsystem.
 
 - https://sbcode.net/typescript/facade/
 - https://blog.upperdine.dev/patterns-that-every-developer-should-know#heading-pattern-4-facade

@@ -1,6 +1,6 @@
 # Factory
 
-> Related to strategy pattern
+> creates instances from different classes that implement the same interface (or extend the same base class)
 
 ## Links
 

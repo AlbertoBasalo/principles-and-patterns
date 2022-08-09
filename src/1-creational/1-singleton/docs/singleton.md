@@ -1,5 +1,7 @@
 # Singleton
 
+> ensures that a class has only one instance, avoiding global variables
+
 ## Links
 
 - https://sbcode.net/typescript/singleton/

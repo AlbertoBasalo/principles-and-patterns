@@ -1,6 +1,6 @@
 # Prototype
 
-> Related to flyweight pattern
+> creates a copy (clone) of an existing object with controlled mutations
 
 ## Links
 

@@ -1,5 +1,7 @@
 # Bridge
 
+> allows several complex subsystem to evolve independently
+
 ## Links
 
 - https://sbcode.net/typescript/bridge/

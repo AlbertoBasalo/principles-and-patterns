@@ -1,5 +1,7 @@
 # Adapter
 
+> decouples third-party libraries (or legacy code) from the application
+
 ## Links
 
 - https://sbcode.net/typescript/adapter/
