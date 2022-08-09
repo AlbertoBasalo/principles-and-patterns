@@ -18,4 +18,4 @@ npm run 3-2-3
 
 ## Tasks
 
-- [ ] Create a command to work with a complex system (bookings, payments, cancellations, etc.)
+- [ ] Create a command to encapsulate the booking logic

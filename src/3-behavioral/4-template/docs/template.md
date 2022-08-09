@@ -17,4 +17,4 @@ npm run 6-1-3
 
 ## Tasks
 
-- [ ] Create a template to work with a complex system (bookings, payments, cancellations, etc.)
+- [ ] Create a template to log business logic
