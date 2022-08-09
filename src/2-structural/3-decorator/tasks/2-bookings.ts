@@ -72,6 +72,6 @@ export class Client {
 
 const client = new Client();
 const booking = client.createBooking("Paris", 100);
-console.log("booking", booking);
+console.log("📅 booking created: ", booking);
 const bookingCancelled = client.cancelBooking(booking);
-console.log("bookingCancelled", bookingCancelled);
+console.log("❌ booking cancelled: ", bookingCancelled);
