@@ -15,12 +15,12 @@ interface Formatter {
 }
 
 class ConsoleWriter implements Writer {
-  write(entry: string): void {
+  public write(entry: string): void {
     console.log(entry);
   }
 }
 class JsonFormatter implements Formatter {
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     return JSON.stringify(entry);
   }
 }
@@ -28,7 +28,7 @@ class JsonFormatter implements Formatter {
 class CommonEventFormatAdapter implements Formatter {
   private readonly commonEventService: CommonEventService = new CommonEventService();
 
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     const commonEvent = this.adaptLogEntryToCommonEvent(entry);
     const commonEventMessage = this.commonEventService.createMessage(commonEvent);
     const logMessage = this.adaptCommonEventToLogMessage(commonEventMessage);
