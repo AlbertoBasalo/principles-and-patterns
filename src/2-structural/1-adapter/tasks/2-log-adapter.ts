@@ -1,31 +1,31 @@
 import { CommonEventService } from "./common-event.library";
 
-type LogCategory = "info" | "error" | "debug";
-type LogEntry = {
+export type LogCategory = "info" | "error" | "debug";
+export type LogEntry = {
   category: LogCategory;
   message: string;
   timestamp: Date;
 };
 
-interface Writer {
+export interface Writer {
   write(entry: string): void;
 }
-interface Formatter {
+export interface Formatter {
   format(entry: LogEntry): string;
 }
 
-class ConsoleWriter implements Writer {
+export class ConsoleWriter implements Writer {
   public write(entry: string): void {
     console.log(entry);
   }
 }
-class JsonFormatter implements Formatter {
+export class JsonFormatter implements Formatter {
   public format(entry: LogEntry): string {
     return JSON.stringify(entry);
   }
 }
 
-class CommonEventFormatAdapter implements Formatter {
+export class CommonEventFormatAdapter implements Formatter {
   private readonly commonEventService: CommonEventService = new CommonEventService();
 
   public format(entry: LogEntry): string {
@@ -48,7 +48,7 @@ class CommonEventFormatAdapter implements Formatter {
     return eventMessage.join("\n");
   }
 }
-class Logger {
+export class Logger {
   constructor(private readonly formatter: Formatter, private readonly writer: Writer) {}
 
   public log(entry: LogEntry) {

@@ -66,13 +66,27 @@ export class Logger {
   }
 }
 
-export class Client {
-  private readonly logger: Logger;
+export class Context {
+  private defaultStrategy: Logger = new Logger(new ConsoleWriter(), new SimpleFormatter());
+  private productionStrategy: Logger = new Logger(new TextFileWriter(), new JsonFormatter());
+  public loggerStrategy: Logger = this.defaultStrategy;
+
   constructor() {
-    const writer = LoggerWriterFactory.createWriter("textFile");
-    const formatter = LoggerFormatterFactory.createFormatter("json");
-    this.logger = new Logger(writer, formatter);
+    this.setStrategy();
   }
+
+  public setStrategy() {
+    const environment = process.env.NODE_ENV;
+    if (environment === "production") {
+      this.loggerStrategy = this.productionStrategy;
+    } else {
+      this.loggerStrategy = this.defaultStrategy;
+    }
+  }
+}
+
+export class Client {
+  private readonly logger: Logger = new Context().loggerStrategy;
   public log(entry: LogEntry) {
     this.logger.log(entry);
   }

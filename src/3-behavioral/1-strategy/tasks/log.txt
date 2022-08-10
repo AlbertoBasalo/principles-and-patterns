@@ -1,0 +1,2 @@
+{"category":"info","message":"Hello World","timestamp":"2022-08-10T08:23:12.273Z"}
+{"category":"error","message":"The world is ending","timestamp":"2022-08-10T08:26:11.576Z"}

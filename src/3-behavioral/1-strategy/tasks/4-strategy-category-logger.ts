@@ -59,20 +59,26 @@ export class LoggerFormatterFactory {
   }
 }
 
+export type LoggerStrategy = { writer: Writer; formatter: Formatter };
+
 export class Logger {
-  constructor(private readonly writer: Writer, private readonly formatter: Formatter) {}
+  public defaultStrategy: LoggerStrategy = { writer: new ConsoleWriter(), formatter: new SimpleFormatter() };
+  public errorStrategy: LoggerStrategy = { writer: new TextFileWriter(), formatter: new JsonFormatter() };
+
   public log(entry: LogEntry) {
-    this.writer.write(this.formatter.format(entry));
+    if (entry.category === "error") {
+      this.writeEntry(entry, this.errorStrategy);
+    } else {
+      this.writeEntry(entry, this.defaultStrategy);
+    }
+  }
+  private writeEntry(entry: LogEntry, strategy: LoggerStrategy) {
+    strategy.writer.write(strategy.formatter.format(entry));
   }
 }
 
 export class Client {
-  private readonly logger: Logger;
-  constructor() {
-    const writer = LoggerWriterFactory.createWriter("textFile");
-    const formatter = LoggerFormatterFactory.createFormatter("json");
-    this.logger = new Logger(writer, formatter);
-  }
+  private readonly logger: Logger = new Logger();
   public log(entry: LogEntry) {
     this.logger.log(entry);
   }
@@ -82,5 +88,10 @@ const client = new Client();
 client.log({
   category: "info",
   message: "Hello World",
+  timestamp: new Date(),
+});
+client.log({
+  category: "error",
+  message: "The world is ending",
   timestamp: new Date(),
 });

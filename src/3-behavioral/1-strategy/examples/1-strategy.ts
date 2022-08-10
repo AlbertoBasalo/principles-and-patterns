@@ -15,7 +15,7 @@ export class ConcreteStrategyB implements Strategy {
 }
 
 export class Context {
-  private strategy: Strategy = new ConcreteStrategyA(); // default
+  constructor(private strategy: Strategy = new ConcreteStrategyA()) {}
 
   public setStrategy(strategy: Strategy): void {
     this.strategy = strategy;
