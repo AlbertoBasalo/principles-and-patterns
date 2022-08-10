@@ -67,8 +67,8 @@ export class Logger {
 }
 
 export class Context {
-  private defaultStrategy: Logger = new Logger(new ConsoleWriter(), new SimpleFormatter());
-  private productionStrategy: Logger = new Logger(new TextFileWriter(), new JsonFormatter());
+  public defaultStrategy: Logger = new Logger(new ConsoleWriter(), new SimpleFormatter());
+  public productionStrategy: Logger = new Logger(new TextFileWriter(), new JsonFormatter());
   public loggerStrategy: Logger = this.defaultStrategy;
 
   constructor() {

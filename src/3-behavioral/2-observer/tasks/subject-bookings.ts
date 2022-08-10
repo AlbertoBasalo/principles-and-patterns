@@ -43,8 +43,12 @@ export interface Observable {
   subscribe(observer: Observer): void;
   notifyObservers(businessEvent: string, message: string): void;
 }
-
-export class AgencySubject {
+/**
+ * An Agency wrapper that implements the Observable interface.
+ * Is a decorator that adds the subscribe and notifyObservers method to the Agency class.
+ * @param {Agency} agency
+ */
+export class AgencySubject implements Observable {
   private observers: Observer[] = [];
   constructor(private agency: Agency) {}
   public subscribe(observer: Observer): void {
