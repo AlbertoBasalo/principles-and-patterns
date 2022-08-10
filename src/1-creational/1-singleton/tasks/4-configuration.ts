@@ -20,7 +20,7 @@ export class ConfigurationService {
   private static instance: ConfigurationService;
   public readonly configuration: Configuration | undefined;
 
-  public constructor() {
+  constructor() {
     if (!ConfigurationService.instance) {
       this.configuration = this.load();
       ConfigurationService.instance = this;
