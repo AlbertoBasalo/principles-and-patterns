@@ -8,6 +8,7 @@ export interface Observer {
   notify(message: string): void;
 }
 
+// aka publisher
 export class Subject implements Observable {
   private observers: Observer[] = [];
 
@@ -22,6 +23,7 @@ export class Subject implements Observable {
   }
 }
 
+// aka subscriber
 export class ConcreteObserverA implements Observer {
   public notify(message: string): void {
     console.log(`${message} 📩 received by 🅰️`);
