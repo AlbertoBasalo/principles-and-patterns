@@ -9,11 +9,9 @@
 
 ```bash
 # Examples
-npm run 5-1-0
-npm run 5-1-1
+npm run 3-2-1
 # Tasks
-npm run 5-1-2
-npm run 5-1-3
+npm run 3-2-2
 ```
 
 ## Tasks
