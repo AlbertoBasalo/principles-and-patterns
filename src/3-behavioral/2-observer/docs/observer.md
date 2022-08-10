@@ -1,5 +1,7 @@
 # Observer
 
+> decouples event emitters from event processors
+
 ## Links
 
 - https://sbcode.net/typescript/observer/
