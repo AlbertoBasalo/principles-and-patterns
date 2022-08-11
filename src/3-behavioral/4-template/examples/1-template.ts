@@ -1,49 +1,61 @@
-export abstract class Template {
-  protected hook1(): void {}
-  protected abstract step1(): void;
-  protected hook2(payload = ""): void {
+export abstract class BusinessTemplate {
+  public execute(payload: string): string {
+    console.log("ℹ️  starting business action");
+    let businessResult = "";
+    try {
+      businessResult = this.doMainLogic(payload);
+    } catch (error) {
+      console.log("ℹ️ 😵‍💫 error: " + error);
+    }
+    return businessResult;
+  }
+
+  protected abstract doPaymentTransaction(payload: string): string;
+
+  protected abstract performBusinessAction(payload: string): string;
+
+  protected sendNotification(payload = ""): void {
     console.log("✅ Done " + payload);
   }
-  public execute(): void {
-    this.hook1();
-    this.step1();
-    this.hook2();
+
+  private doMainLogic(payload: string): string {
+    const paymentResult = this.doPaymentTransaction(payload);
+    console.log("ℹ️  payment done");
+    const businessResult = this.performBusinessAction(paymentResult);
+    console.log("ℹ️  action done");
+    this.sendNotification(businessResult);
+    console.log("ℹ️  notification done");
+    return businessResult;
   }
 }
 
-export class ConcreteAlfa extends Template {
-  protected override hook1(): void {
-    console.log("🅰️  Hook 1");
+export class BookingTrip extends BusinessTemplate {
+  protected doPaymentTransaction(payload: string): string {
+    return "💸  Paying trip";
   }
-  protected step1(): void {
-    console.log("🅰️  Step 1");
+  protected performBusinessAction(): string {
+    return "🚀 Booking trip";
+  }
+  protected override sendNotification(payload: string): void {
+    console.log("📧 Trip booked");
   }
 }
 
-export class ConcreteBravo extends Template {
-  protected step1(): void {
-    console.log("🅱️  Step 1");
+export class CancelTrip extends BusinessTemplate {
+  protected doPaymentTransaction(payload: string): string {
+    return "🤑  Refunding trip";
   }
-  protected override hook2(): void {}
-}
-
-export class ConcreteCharlie extends Template {
-  protected step1(): void {
-    console.log("©️  Step 1");
-  }
-  protected override hook2(): void {
-    super.hook2("charlie");
+  protected override performBusinessAction(): string {
+    return "😭  Cancelling trip";
   }
 }
 
 export class Client {
-  private alfa = new ConcreteAlfa();
-  private bravo = new ConcreteBravo();
-  private charlie = new ConcreteCharlie();
+  private booking = new BookingTrip();
+  private cancel = new CancelTrip();
   public run(): void {
-    this.alfa.execute();
-    this.bravo.execute();
-    this.charlie.execute();
+    this.booking.execute("The Moon");
+    this.cancel.execute("The Moon");
   }
 }
 
