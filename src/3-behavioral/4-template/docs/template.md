@@ -1,5 +1,7 @@
 # Template Method
 
+> ensure common behavior and allow custom implementations
+
 ## Links
 
 - https://sbcode.net/typescript/template/
