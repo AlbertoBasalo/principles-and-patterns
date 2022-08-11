@@ -1,7 +1,7 @@
 export abstract class Template {
-  public hook1(): void {}
-  public abstract step1(): void;
-  public hook2(payload = ""): void {
+  protected hook1(): void {}
+  protected abstract step1(): void;
+  protected hook2(payload = ""): void {
     console.log("✅ Done " + payload);
   }
   public execute(): void {
@@ -12,26 +12,26 @@ export abstract class Template {
 }
 
 export class ConcreteAlfa extends Template {
-  public override hook1(): void {
+  protected override hook1(): void {
     console.log("🅰️  Hook 1");
   }
-  public step1(): void {
+  protected step1(): void {
     console.log("🅰️  Step 1");
   }
 }
 
 export class ConcreteBravo extends Template {
-  public step1(): void {
+  protected step1(): void {
     console.log("🅱️  Step 1");
   }
-  public override hook2(): void {}
+  protected override hook2(): void {}
 }
 
 export class ConcreteCharlie extends Template {
-  public step1(): void {
+  protected step1(): void {
     console.log("©️  Step 1");
   }
-  public override hook2(): void {
+  protected override hook2(): void {
     super.hook2("charlie");
   }
 }

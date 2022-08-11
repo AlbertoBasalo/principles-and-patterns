@@ -1,7 +1,7 @@
 export abstract class BusinessTemplate {
-  public abstract doPaymentTransaction(payload: string): string;
-  public abstract performBusinessAction(payload: string): string;
-  public sendNotification(payload = ""): void {
+  protected abstract doPaymentTransaction(payload: string): string;
+  protected abstract performBusinessAction(payload: string): string;
+  protected sendNotification(payload = ""): void {
     console.log("✅ Done " + payload);
   }
   public execute(payload: string): string {
@@ -27,22 +27,22 @@ export abstract class BusinessTemplate {
 }
 
 export class BookingTrip extends BusinessTemplate {
-  public doPaymentTransaction(payload: string): string {
+  protected doPaymentTransaction(payload: string): string {
     return "💸  Paying trip";
   }
-  public performBusinessAction(): string {
+  protected performBusinessAction(): string {
     return "🚀 Booking trip";
   }
-  public override sendNotification(payload: string): void {
+  protected override sendNotification(payload: string): void {
     console.log("📧 Trip booked");
   }
 }
 
 export class CancelTrip extends BusinessTemplate {
-  public doPaymentTransaction(payload: string): string {
+  protected doPaymentTransaction(payload: string): string {
     return "🤑  Refunding trip";
   }
-  public override performBusinessAction(): string {
+  protected override performBusinessAction(): string {
     return "😭  Cancelling trip";
   }
 }
