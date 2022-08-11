@@ -8,11 +8,9 @@
 
 ```bash
 # Examples
-npm run 6-1-0
-npm run 6-1-1
+npm run 3-4-1
 # Tasks
-npm run 6-1-2
-npm run 6-1-3
+npm run 3-4-2
 ```
 
 ## Tasks
