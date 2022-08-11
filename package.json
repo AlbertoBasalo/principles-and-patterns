@@ -55,6 +55,7 @@
     "3-3-1": "ts-node ./src/3-behavioral/3-command/examples/1-command.ts",
     "3-3-2": "ts-node ./src/3-behavioral/3-command/tasks/2-command-bookings.ts",
     "3-4-1": "ts-node ./src/3-behavioral/4-template/examples/1-template.ts",
+    "3-4-2": "ts-node ./src/3-behavioral/4-template/tasks/2-template-bookings-log.ts",
     "build": "tsc -p tsconfig.json",
     "ts-node": "ts-node",
     "format": "prettier --write \"./**/*.{ts,json}\"",
