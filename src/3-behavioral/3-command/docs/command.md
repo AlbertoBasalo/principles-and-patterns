@@ -13,7 +13,7 @@
 # Examples
 npm run 3-3-1
 # Tasks
-npm run 3-2-2
+npm run 3-3-2
 ```
 
 ## Tasks

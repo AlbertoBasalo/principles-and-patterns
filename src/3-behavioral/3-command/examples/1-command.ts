@@ -11,7 +11,7 @@ export class Invoker {
     this.catalog.push({ action, command });
   }
 
-  public dispatch(action: string, payload: string) {
+  public dispatch(action: string, payload: string): void {
     const actionCommand = this.catalog.find(c => c.action === action);
     if (!actionCommand) {
       throw new Error(`Action ${action} not found`);
@@ -47,6 +47,7 @@ export class Invoker {
   }
 
   public printHistory() {
+    console.log("📜 Command History:");
     this.history.forEach(h => console.log(h));
   }
 }
@@ -74,7 +75,7 @@ export class CommandBravo implements Command {
 }
 
 export class Client {
-  private invoker = new Invoker();
+  public invoker = new Invoker();
   private receiver = new Receiver();
 
   constructor() {
@@ -89,12 +90,9 @@ export class Client {
     this.invoker.undo();
     this.invoker.dispatch("alfa", "Bye bye world");
     this.invoker.dispatch("bravo", "Bye bye world");
-  }
-  public printHistory() {
     this.invoker.printHistory();
   }
 }
 
 const client = new Client();
 client.run();
-client.printHistory();
