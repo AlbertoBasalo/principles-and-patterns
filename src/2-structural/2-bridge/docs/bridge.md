@@ -1,8 +1,8 @@
 # Bridge
 
-> allows several complex subsystem to evolve independently
+## Allows several complex subsystem to evolve independently
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/bridge/
 - https://dev.to/zeeshanhshaheen/design-patterns-in-javascript-1pgm#bridge
@@ -10,7 +10,7 @@
 - https://jsmanifest.com/bridge-design-patterin-in-javascript/
 - https://dev.to/coly010/the-bridge-pattern-design-patterns-meet-the-frontend-46fc
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -21,6 +21,6 @@ npm run 2-2-2
 npm run 2-2-3
 ```
 
-## Tasks
+### Tasks
 
 - [x] Create a bridge between travel agencies and flight operators

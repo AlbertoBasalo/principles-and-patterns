@@ -1,8 +1,8 @@
 # Builder
 
-> Simplifies or drives the creation of complex objects
+## Simplifies or drives the creation of complex objects
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/builder/
 - https://catalins.tech/the-4-creational-design-patterns-in-nodejs-you-should-know#builder
@@ -10,7 +10,7 @@
 - https://betterprogramming.pub/lets-look-at-the-builder-pattern-in-typescript-fb9cf202c04d
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#constructor-builder-pattern-creational-design
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -22,7 +22,7 @@ npm run 1-4-4
 npm run 1-4-5
 ```
 
-## Practice
+### Practice
 
 - [x] Logger
 - [ ] Booking

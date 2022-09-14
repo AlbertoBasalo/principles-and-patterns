@@ -1,15 +1,15 @@
 # Strategy
 
-> choose an implementation and use it on production
+## Choose an implementation and use it on production
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/strategy/
 - https://dev.to/zeeshanhshaheen/design-patterns-in-javascript-1pgm#strategy
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#strategy-pattern-behavioral-design
 - https://medium.com/@mariusbongarts/design-patterns-with-typescript-examples-strategy-1af9efda0fd0
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -20,6 +20,6 @@ npm run 3-1-3
 npm run 3-1-4
 ```
 
-## Tasks
+### Tasks
 
 - [ ] Create a strategy to choose a logger based on the environment

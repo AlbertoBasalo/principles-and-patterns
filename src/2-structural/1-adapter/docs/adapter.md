@@ -1,8 +1,8 @@
 # Adapter
 
-> decouples third-party libraries (or legacy code) from the application
+## Decouples third-party libraries (or legacy code) from the application
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/adapter/
 - https://dev.to/triyanox/design-patterns-in-typescript-e68#adapter
@@ -11,7 +11,7 @@
 - https://dev.to/zeeshanhshaheen/design-patterns-in-javascript-1pgm#adapter
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#adapter-pattern-wrapper-pattern-structural-design
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -20,7 +20,7 @@ npm run 2-1-1
 npm run 2-1-2
 ```
 
-## Tasks
+### Tasks
 
 - [x] Adapt a third party logger formatter
 - [ ] Adapt a payment gateway

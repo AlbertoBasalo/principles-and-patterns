@@ -1,13 +1,13 @@
 # Command
 
-> take control of your actions
+## Takes the definition of actions from methods to classes increasing its versatility
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/command/
 - https://blog.devgenius.io/design-patterns-with-typescript-examples-command-3a7260f15c11
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -16,6 +16,6 @@ npm run 3-3-1
 npm run 3-3-2
 ```
 
-## Tasks
+### Tasks
 
 - [ ] Create a command to encapsulate the booking logic

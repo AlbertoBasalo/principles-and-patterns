@@ -1,8 +1,8 @@
 # Factory
 
-> creates instances from different classes that implement the same interface (or extend the same base class)
+## Creates instances from different classes that implement the same interface (or extend the same base class)
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/factory/
 - https://sbcode.net/typescript/abstract_factory/
@@ -12,7 +12,7 @@
 - https://javascript.plainenglish.io/design-patterns-with-typescript-examples-factory-method-4d145887b141
 - https://blog.upperdine.dev/patterns-that-every-developer-should-know#heading-pattern-3-factory
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -23,7 +23,7 @@ npm run 1-3-3
 npm run 1-3-4
 ```
 
-## Tasks
+### Tasks
 
 - [x] Logger writers (console, file) logger formatters (json, simple)
 - [ ] Dependency injection

@@ -1,12 +1,12 @@
 # Template Method
 
-> ensure common behavior and allow custom implementations
+## Ensure common behavior and allow custom implementations
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/template/
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -15,6 +15,6 @@ npm run 3-4-1
 npm run 3-4-2
 ```
 
-## Tasks
+### Tasks
 
 - [ ] Create a template to log business logic

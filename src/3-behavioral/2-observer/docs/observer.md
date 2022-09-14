@@ -1,13 +1,13 @@
 # Observer
 
-> decouples event emitters from event processors
+## Decouples event emitters from event processors notifying changes to subscribers
 
-## Links
+### Links
 
 - https://sbcode.net/typescript/observer/
 - https://javascript.plainenglish.io/design-patterns-with-typescript-examples-observer-22e5ae36be4c
 
-## Examples
+### Examples
 
 ```bash
 # Examples
@@ -16,6 +16,6 @@ npm run 3-2-1
 npm run 3-2-2
 ```
 
-## Tasks
+### Tasks
 
 - [ ] Create a observer communicate business logic with the logger
