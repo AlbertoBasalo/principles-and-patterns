@@ -9,7 +9,7 @@ export class Product implements Prototype<Product> {
   public timestamp = new Date().getTime();
   public name = "";
   public primitiveProperty: Primitive | null = null;
-  public objectProperty: object | null = null;
+  public objectProperty: unknown | null = null;
   public arrayProperty: unknown[] = [];
 
   public clone(): Product {
@@ -52,6 +52,7 @@ export class Client {
     product2.name = "Product 2";
     product2.primitiveProperty = "Primitive property 2";
     if (product2.objectProperty) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (product2.objectProperty as any).key1 = "value 1 2";
     }
     product2.arrayProperty[0] = "Array property 1 2";

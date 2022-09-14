@@ -1,6 +1,6 @@
 # Builder
 
-> sSimplifies or drives the creation of complex objects
+> Simplifies or drives the creation of complex objects
 
 ## Links
 

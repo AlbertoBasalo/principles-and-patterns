@@ -2,7 +2,7 @@ export class Singleton {
   private static instance: Singleton;
   public readonly timestamp: number = Date.now();
 
-  public constructor() {
+  constructor() {
     if (!Singleton.instance) {
       Singleton.instance = this;
     }

@@ -16,24 +16,24 @@ interface Formatter {
 }
 
 class ConsoleWriter implements Writer {
-  write(entry: string): void {
+  public write(entry: string): void {
     console.log(entry);
   }
 }
 class TextFileWriter implements Writer {
   private readonly filePath = path.resolve(__dirname, "./log.txt");
-  write(entry: string): void {
+  public write(entry: string): void {
     fs.appendFileSync(this.filePath, entry + "\n");
   }
 }
 
 class JsonFormatter implements Formatter {
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     return JSON.stringify(entry);
   }
 }
 class SimpleFormatter implements Formatter {
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
   }
 }
@@ -42,7 +42,7 @@ class Logger {
   public writer: Writer | undefined;
   public formatter: Formatter | undefined;
 
-  log(entry: LogEntry) {
+  public log(entry: LogEntry) {
     if (!this.writer || !this.formatter) {
       throw new Error("Logger is not configured");
     }
@@ -73,7 +73,7 @@ class Client {
     const builder = new LoggerBuilder();
     this.logger = builder.setWriter(new ConsoleWriter()).setFormatter(new JsonFormatter()).build();
   }
-  log(entry: LogEntry) {
+  public log(entry: LogEntry) {
     this.logger.log(entry);
   }
 }

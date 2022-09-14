@@ -16,24 +16,24 @@ interface Formatter {
 }
 
 class ConsoleWriter implements Writer {
-  write(entry: string): void {
+  public write(entry: string): void {
     console.log(entry);
   }
 }
 class TextFileWriter implements Writer {
   private readonly filePath = path.resolve(__dirname, "./log.txt");
-  write(entry: string): void {
+  public write(entry: string): void {
     fs.appendFileSync(this.filePath, entry + "\n");
   }
 }
 
 class JsonFormatter implements Formatter {
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     return JSON.stringify(entry);
   }
 }
 class SimpleFormatter implements Formatter {
-  format(entry: LogEntry): string {
+  public format(entry: LogEntry): string {
     return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
   }
 }
@@ -69,7 +69,7 @@ class LoggerAbstractFactory {
 
 class Logger {
   constructor(private readonly writer: Writer, private readonly formatter: Formatter) {}
-  log(entry: LogEntry) {
+  public log(entry: LogEntry) {
     this.writer.write(this.formatter.format(entry));
   }
 }
@@ -81,7 +81,7 @@ class Client {
     const formatter = LoggerAbstractFactory.create("simple") as Formatter;
     this.logger = new Logger(writer, formatter);
   }
-  log(entry: LogEntry) {
+  public log(entry: LogEntry) {
     this.logger.log(entry);
   }
 }
