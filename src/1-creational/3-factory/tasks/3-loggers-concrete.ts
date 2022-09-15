@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 
+// ToDo: create a version without factories...
+
 export type LogCategory = "info" | "error" | "debug";
 export type LogEntry = {
   category: LogCategory;

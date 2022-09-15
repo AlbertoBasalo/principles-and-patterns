@@ -15,6 +15,7 @@ export class Booking {
   ) {}
 
   public cancel(): Booking {
+    // create a new one copy (clone) with some mutations
     const cancelledBooking = new Booking(
       this.id,
       this.destination,

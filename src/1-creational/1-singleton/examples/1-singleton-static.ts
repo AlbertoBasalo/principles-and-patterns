@@ -18,7 +18,6 @@ class ClientA {
     console.log(instance.timestamp);
   }
 }
-
 ClientA.main();
 
 class ClientB {

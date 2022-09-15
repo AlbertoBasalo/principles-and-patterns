@@ -57,6 +57,7 @@ class AnythingFactory {
 }
 
 class Factory {
+  // ! A Factory of Factories
   public create(type: string, subType: string): Something | Anything {
     if (type === "Something") {
       return new SomethingFactory().create(subType);

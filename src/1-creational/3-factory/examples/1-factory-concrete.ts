@@ -18,12 +18,14 @@ export class ConcreteB implements Something {
 }
 
 export class Factory {
+  // Factory method
   public create(type: string): Something {
     if (type === "A") {
       return new ConcreteA();
     } else {
       return new ConcreteB();
     }
+    // ToDo: use an structure instead of conditionals
   }
 }
 

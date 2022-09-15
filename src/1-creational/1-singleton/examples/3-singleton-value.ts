@@ -1,14 +1,17 @@
 export class Singleton {
   private static instance: Singleton;
-  public value: unknown;
+  private _value: unknown;
+  public get value(): unknown {
+    return this._value;
+  }
 
   constructor(value: unknown) {
     if (!Singleton.instance) {
-      this.value = value;
+      this._value = value;
       Singleton.instance = this;
     } else {
       // Remove this to make the initial value immutable
-      Singleton.instance.value = value;
+      Singleton.instance._value = value;
     }
     return Singleton.instance;
   }
