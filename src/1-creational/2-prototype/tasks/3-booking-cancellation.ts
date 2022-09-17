@@ -1,7 +1,8 @@
+/* eslint-disable max-params */
 type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
 
 export class Booking {
-  // eslint-disable-next-line max-params
+  // readonly properties makes object immutable
   constructor(
     public readonly id: string,
     public readonly destination: string,
@@ -15,7 +16,7 @@ export class Booking {
   ) {}
 
   public cancel(): Booking {
-    // create a new one copy (clone) with some mutations
+    // create a new one copy (clone) with some changes (mutations)
     const cancelledBooking = new Booking(
       this.id,
       this.destination,
