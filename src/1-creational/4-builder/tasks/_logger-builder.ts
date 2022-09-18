@@ -8,49 +8,61 @@ type LogEntry = {
   timestamp: Date;
 };
 
-class Logger {
-  private readonly filePath = path.resolve(__dirname, "./log.txt");
+interface Writer {
+  write(entry: string): void;
+}
+interface Formatter {
+  format(entry: LogEntry): string;
+}
 
-  constructor(public formatter = "JSON", public writer = "Console") {}
+class ConsoleWriter implements Writer {
+  public write(entry: string): void {
+    console.log(entry);
+  }
+}
+class TextFileWriter implements Writer {
+  private readonly filePath = path.resolve(__dirname, "./log.txt");
+  public write(entry: string): void {
+    fs.appendFileSync(this.filePath, entry + "\n");
+  }
+}
+
+class JsonFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return JSON.stringify(entry);
+  }
+}
+class SimpleFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
+  }
+}
+
+class Logger {
+  private writer: Writer | undefined;
+  private formatter: Formatter | undefined;
+
+  public setWriter(writer: Writer): void {
+    // To Do: check incompatibilities
+    this.writer = writer;
+  }
+  public setFormatter(formatter: Formatter): void {
+    this.formatter = formatter;
+  }
 
   public log(entry: LogEntry) {
     if (!this.writer || !this.formatter) {
       throw new Error("Logger is not configured");
     }
-    let message = "";
-    if (this.formatter == "JSON") {
-      message = this.formatJSON(entry);
-    } else {
-      message = this.formatSimple(entry);
-    }
-    if (this.writer == "Console") {
-      this.writeConsole(message);
-    } else {
-      this.writeFile(message);
-    }
-  }
-
-  private writeConsole(entry: string): void {
-    console.log(entry);
-  }
-
-  private writeFile(entry: string): void {
-    fs.appendFileSync(this.filePath, entry + "\n");
-  }
-
-  private formatJSON(entry: LogEntry): string {
-    return JSON.stringify(entry);
-  }
-
-  private formatSimple(entry: LogEntry): string {
-    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
+    this.writer.write(this.formatter.format(entry));
   }
 }
-
 class Client {
   private readonly logger: Logger;
   constructor() {
     this.logger = new Logger();
+    this.logger.setFormatter(new JsonFormatter());
+    this.logger.setWriter(new ConsoleWriter());
   }
   public log(entry: LogEntry) {
     this.logger.log(entry);
