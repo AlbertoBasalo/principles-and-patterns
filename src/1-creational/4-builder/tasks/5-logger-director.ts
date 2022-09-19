@@ -26,7 +26,6 @@ class TextFileWriter implements Writer {
     fs.appendFileSync(this.filePath, entry + "\n");
   }
 }
-
 class JsonFormatter implements Formatter {
   public format(entry: LogEntry): string {
     return JSON.stringify(entry);
@@ -39,9 +38,21 @@ class SimpleFormatter implements Formatter {
 }
 
 class Logger {
-  public writer: Writer | undefined;
-  public formatter: Formatter | undefined;
+  private formatter: Formatter | undefined;
+  private writer: Writer | undefined;
 
+  public setFormatter(formatter: Formatter): void {
+    this.formatter = formatter;
+  }
+  public setWriter(writer: Writer): void {
+    if (!this.formatter) {
+      throw "Need a formatter";
+    }
+    if (this.formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
+      throw "Incompatible formatter";
+    }
+    this.writer = writer;
+  }
   public log(entry: LogEntry) {
     if (!this.writer || !this.formatter) {
       throw new Error("Logger is not configured");
@@ -51,28 +62,24 @@ class Logger {
 }
 
 class LoggerBuilder {
-  private logger: Logger = new Logger();
-  public setWriter(writer: Writer): LoggerBuilder {
-    this.logger.writer = writer;
-    return this;
-  }
-  public setFormatter(formatter: Formatter): LoggerBuilder {
-    this.logger.formatter = formatter;
-    return this;
-  }
-  public build(): Logger {
-    return this.logger;
+  public static build(formatter: Formatter, writer: Writer): Logger {
+    if (formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
+      throw "Incompatible formatter";
+    }
+    const logger = new Logger();
+    logger.setFormatter(new JsonFormatter());
+    logger.setWriter(new ConsoleWriter());
+    return logger;
   }
 }
 
+// ! another abstraction on top of the builder to give clients what they want without knowing the internals
 class LoggerDirector {
   public static buildDefault(): Logger {
-    const builder = new LoggerBuilder();
-    return builder.setFormatter(new SimpleFormatter()).setWriter(new ConsoleWriter()).build();
+    return LoggerBuilder.build(new SimpleFormatter(), new TextFileWriter());
   }
   public static buildFancy(): Logger {
-    const builder = new LoggerBuilder();
-    return builder.setFormatter(new JsonFormatter()).setWriter(new TextFileWriter()).build();
+    return LoggerBuilder.build(new JsonFormatter(), new ConsoleWriter());
   }
 }
 
@@ -85,7 +92,6 @@ class Client {
     this.logger.log(entry);
   }
 }
-
 const client = new Client();
 client.log({
   category: "info",

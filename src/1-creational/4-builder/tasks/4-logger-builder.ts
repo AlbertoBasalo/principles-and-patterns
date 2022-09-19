@@ -39,8 +39,21 @@ class SimpleFormatter implements Formatter {
 }
 
 class Logger {
-  public writer: Writer | undefined;
-  public formatter: Formatter | undefined;
+  private formatter: Formatter | undefined;
+  private writer: Writer | undefined;
+
+  public setFormatter(formatter: Formatter): void {
+    this.formatter = formatter;
+  }
+  public setWriter(writer: Writer): void {
+    if (!this.formatter) {
+      throw "Need a formatter";
+    }
+    if (this.formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
+      throw "Incompatible formatter";
+    }
+    this.writer = writer;
+  }
 
   public log(entry: LogEntry) {
     if (!this.writer || !this.formatter) {
@@ -50,28 +63,26 @@ class Logger {
   }
 }
 
+// ! With a new class, there is no necessity to change the current one (Open/Close)
+
 class LoggerBuilder {
-  private logger: Logger = new Logger();
-  public setWriter(writer: Writer): LoggerBuilder {
-    this.logger.writer = writer;
-    return this;
-  }
-  public setFormatter(formatter: Formatter): LoggerBuilder {
-    this.logger.formatter = formatter;
-    return this;
-  }
-  public build(): Logger {
-    // ToDo: default values
-    // ToDo: Check incompatibilities
-    return this.logger;
+  public static build(formatter: Formatter, writer: Writer): Logger {
+    if (formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
+      // ! Check before any creation, allows easy fallback defaults
+      throw "Incompatible formatter";
+    }
+    const logger = new Logger();
+    // ! The order of assignment is guaranteed, the client of this builder can be carefree
+    logger.setFormatter(new JsonFormatter());
+    logger.setWriter(new ConsoleWriter());
+    return logger;
   }
 }
 
 class Client {
   private readonly logger: Logger;
   constructor() {
-    const builder = new LoggerBuilder();
-    this.logger = builder.setWriter(new ConsoleWriter()).setFormatter(new JsonFormatter()).build();
+    this.logger = LoggerBuilder.build(new JsonFormatter(), new ConsoleWriter());
   }
   public log(entry: LogEntry) {
     this.logger.log(entry);
