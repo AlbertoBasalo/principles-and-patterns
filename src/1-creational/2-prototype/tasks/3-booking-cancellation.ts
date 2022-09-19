@@ -7,9 +7,7 @@ export class Booking {
     public readonly id: string,
     public readonly destination: string,
     public readonly departureDate: Date,
-    public readonly returnDate: Date,
     public readonly price: number,
-    public readonly currency: string,
     public readonly status: BookingStatus,
     public readonly createdOn: Date | null = new Date(),
     public readonly updatedOn: Date | null = null
@@ -21,9 +19,7 @@ export class Booking {
       this.id,
       this.destination,
       this.departureDate,
-      this.returnDate,
       this.price,
-      this.currency,
       "Cancelled",
       this.createdOn,
       new Date()
@@ -35,12 +31,13 @@ export class Booking {
 export class App {
   public getBooking(): Booking {
     const bookingId = Math.random().toString();
-    const booking = new Booking(bookingId, "London", new Date(), new Date(), 100, "GBP", "Pending");
+    const booking = new Booking(bookingId, "London", new Date(), 100, "Pending");
     return booking;
   }
 
   public cancelBooking(booking: Booking): Booking {
     const cancelled = booking.cancel();
+    // original record is preserved; operation can be undone and tracked
     return cancelled;
   }
 }
