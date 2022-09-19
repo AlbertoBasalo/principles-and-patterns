@@ -2,7 +2,7 @@
 type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
 
 export class Booking {
-  // readonly properties makes object immutable
+  // ! readonly properties makes object immutable
   constructor(
     public readonly id: string,
     public readonly destination: string,
@@ -14,7 +14,7 @@ export class Booking {
   ) {}
 
   public cancel(): Booking {
-    // create a new one copy (clone) with some changes (mutations)
+    // ! creates a new one copy (clone) with some changes (mutations)
     const cancelledBooking = new Booking(
       this.id,
       this.destination,
@@ -37,7 +37,7 @@ export class App {
 
   public cancelBooking(booking: Booking): Booking {
     const cancelled = booking.cancel();
-    // original record is preserved; operation can be undone and tracked
+    // ! original record is preserved; operation can be undone and tracked
     return cancelled;
   }
 }
