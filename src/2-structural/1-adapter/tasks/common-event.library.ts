@@ -6,6 +6,7 @@ export type CommonEvent = {
   extension: string[];
 };
 
+// ToDo: an external library with proprietary format
 export class CommonEventService {
   public createMessage(event: CommonEvent): string[] {
     const { date, host, device, severity, extension } = event;

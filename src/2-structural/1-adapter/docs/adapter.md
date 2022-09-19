@@ -1,6 +1,6 @@
 # Adapter
 
-## Decouples third-party libraries (or legacy code) from the application
+## Decouples third-party libraries (or legacy code) from **the application**
 
 ### Links
 

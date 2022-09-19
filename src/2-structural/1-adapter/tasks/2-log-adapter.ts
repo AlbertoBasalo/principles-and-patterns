@@ -1,4 +1,4 @@
-import { CommonEventService } from "./common-event.library";
+import { CommonEvent, CommonEventService } from "./common-event.library";
 
 export type LogCategory = "info" | "error" | "debug";
 export type LogEntry = {
@@ -29,13 +29,16 @@ export class CommonEventFormatAdapter implements Formatter {
   private readonly commonEventService: CommonEventService = new CommonEventService();
 
   public format(entry: LogEntry): string {
+    // ! adapt ours to theirs
     const commonEvent = this.adaptLogEntryToCommonEvent(entry);
+    // ! make use of adapted functionality
     const commonEventMessage = this.commonEventService.createMessage(commonEvent);
+    // ! adapt theirs to ours
     const logMessage = this.adaptCommonEventToLogMessage(commonEventMessage);
     return logMessage;
   }
 
-  private adaptLogEntryToCommonEvent(entry: LogEntry) {
+  private adaptLogEntryToCommonEvent(entry: LogEntry): CommonEvent {
     return {
       date: entry.timestamp,
       host: "localhost",
