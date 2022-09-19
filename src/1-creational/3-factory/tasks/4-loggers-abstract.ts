@@ -15,6 +15,16 @@ interface Formatter {
   format(entry: LogEntry): string;
 }
 
+class JsonFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return JSON.stringify(entry);
+  }
+}
+class SimpleFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
+  }
+}
 class ConsoleWriter implements Writer {
   public write(entry: string): void {
     console.log(entry);
@@ -24,17 +34,6 @@ class TextFileWriter implements Writer {
   private readonly filePath = path.resolve(__dirname, "./log.txt");
   public write(entry: string): void {
     fs.appendFileSync(this.filePath, entry + "\n");
-  }
-}
-
-class JsonFormatter implements Formatter {
-  public format(entry: LogEntry): string {
-    return JSON.stringify(entry);
-  }
-}
-class SimpleFormatter implements Formatter {
-  public format(entry: LogEntry): string {
-    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
   }
 }
 
@@ -58,17 +57,21 @@ class LoggerFormatterFactory {
 }
 
 class LoggerAbstractFactory {
-  public static create(dependency: "console" | "textFile" | "json" | "simple"): Writer | Formatter {
-    if (["console", "textFile"].includes(dependency)) {
-      return LoggerWriterFactory.createWriter(dependency);
-    } else {
+  public static create(
+    factory: "formatter" | "writer",
+    dependency: "console" | "textFile" | "json" | "simple"
+  ): Writer | Formatter {
+    if (factory == "formatter") {
       return LoggerFormatterFactory.createFormatter(dependency);
+    } else {
+      return LoggerWriterFactory.createWriter(dependency);
     }
+    // ToDo: check for inconsistencies
   }
 }
 
 class Logger {
-  constructor(private readonly writer: Writer, private readonly formatter: Formatter) {}
+  constructor(private readonly formatter: Formatter, private readonly writer: Writer) {}
   public log(entry: LogEntry) {
     this.writer.write(this.formatter.format(entry));
   }
@@ -77,9 +80,10 @@ class Logger {
 class Client {
   private readonly logger: Logger;
   constructor() {
-    const writer = LoggerAbstractFactory.create("console") as Writer;
-    const formatter = LoggerAbstractFactory.create("simple") as Formatter;
-    this.logger = new Logger(writer, formatter);
+    const formatter = LoggerAbstractFactory.create("formatter", "simple") as Formatter;
+    const writer = LoggerAbstractFactory.create("writer", "console") as Writer;
+    this.logger = new Logger(formatter, writer);
+    // ! useful for generic injection systems with previous registering processes
   }
   public log(entry: LogEntry) {
     this.logger.log(entry);

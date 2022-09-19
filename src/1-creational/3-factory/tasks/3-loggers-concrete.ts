@@ -1,8 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
 
-// ToDo: create a version without factories...
-
 export type LogCategory = "info" | "error" | "debug";
 export type LogEntry = {
   category: LogCategory;
@@ -13,34 +11,17 @@ export type LogEntry = {
 export interface Writer {
   write(entry: string): void;
 }
-export interface Formatter {
-  format(entry: LogEntry): string;
-}
-
 export class ConsoleWriter implements Writer {
   public write(entry: string): void {
     console.log(entry);
   }
 }
-export class JsonFormatter implements Formatter {
-  public format(entry: LogEntry): string {
-    return JSON.stringify(entry);
-  }
-}
-
 export class TextFileWriter implements Writer {
   private readonly filePath = path.resolve(__dirname, "./log.txt");
   public write(entry: string): void {
     fs.appendFileSync(this.filePath, entry + "\n");
   }
 }
-
-export class SimpleFormatter implements Formatter {
-  public format(entry: LogEntry): string {
-    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
-  }
-}
-
 export class LoggerWriterFactory {
   public static createWriter(type: "console" | "textFile"): Writer {
     if (type === "console") {
@@ -51,6 +32,19 @@ export class LoggerWriterFactory {
   }
 }
 
+export interface Formatter {
+  format(entry: LogEntry): string;
+}
+export class JsonFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return JSON.stringify(entry);
+  }
+}
+export class SimpleFormatter implements Formatter {
+  public format(entry: LogEntry): string {
+    return `${entry.timestamp.toISOString()} : [${entry.category}] ${entry.message}`;
+  }
+}
 export class LoggerFormatterFactory {
   public static createFormatter(type: "json" | "simple"): Formatter {
     if (type === "json") {
@@ -62,7 +56,7 @@ export class LoggerFormatterFactory {
 }
 
 export class Logger {
-  constructor(private readonly writer: Writer, private readonly formatter: Formatter) {}
+  constructor(private readonly formatter: Formatter, private readonly writer: Writer) {}
   public log(entry: LogEntry) {
     this.writer.write(this.formatter.format(entry));
   }
@@ -73,7 +67,7 @@ export class Client {
   constructor() {
     const writer = LoggerWriterFactory.createWriter("textFile");
     const formatter = LoggerFormatterFactory.createFormatter("json");
-    this.logger = new Logger(writer, formatter);
+    this.logger = new Logger(formatter, writer);
   }
   public log(entry: LogEntry) {
     this.logger.log(entry);
