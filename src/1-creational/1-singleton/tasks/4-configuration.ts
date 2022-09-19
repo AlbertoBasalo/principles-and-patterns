@@ -15,10 +15,9 @@ export type Configuration = {
     expiresIn: string;
   };
 };
-
 export class ConfigurationService {
   private static instance: ConfigurationService;
-  public readonly configuration: Configuration | undefined;
+  public readonly configuration!: Configuration;
 
   constructor() {
     if (!ConfigurationService.instance) {
@@ -35,6 +34,10 @@ export class ConfigurationService {
     return ConfigurationService.instance;
   }
 
+  public static getConfiguration(): Configuration {
+    return ConfigurationService.getInstance().configuration;
+  }
+
   private load() {
     const filePath = path.resolve(__dirname, "./configuration.json");
     console.log("📖 Loading from: " + filePath);
@@ -48,7 +51,7 @@ export class App {
   private configurationService = new ConfigurationService();
 
   public static main(): void {
-    const configuration = ConfigurationService.getInstance();
+    const configuration = ConfigurationService.getInstance().configuration;
     console.log("🏠 App main static...");
     console.log(configuration);
   }
