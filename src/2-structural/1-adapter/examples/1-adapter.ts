@@ -50,6 +50,7 @@ class Client {
   public doSomethingBravo(): string {
     const bravo = new ConcreteBravo();
     const bravoAdapter = new BravoAdapter(bravo);
+    // ! bravo behaves like alpha
     bravoAdapter.propertyAlpha = "2";
     return bravoAdapter.methodAlpha("2");
   }

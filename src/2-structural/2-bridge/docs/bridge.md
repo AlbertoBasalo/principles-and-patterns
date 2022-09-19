@@ -1,6 +1,6 @@
 # Bridge
 
-## Allows several complex subsystem to evolve independently
+## Allows several (usually two) complex subsystem to evolve **independently**
 
 ### Links
 
