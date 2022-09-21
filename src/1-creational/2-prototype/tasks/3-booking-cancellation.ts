@@ -13,8 +13,22 @@ export class Booking {
     public readonly updatedOn: Date | null = null
   ) {}
 
-  public cancel(): Booking {
+  public clone(mutations: Partial<Booking>) {
     // ! creates a new one copy (clone) with some changes (mutations)
+    const clone = new Booking(
+      mutations.id || this.id,
+      mutations.destination || this.destination,
+      mutations.departureDate || this.departureDate,
+      mutations.price || this.price,
+      mutations.status || this.status,
+      mutations.createdOn || this.createdOn,
+      new Date()
+    );
+    return clone;
+  }
+
+  public cancel(): Booking {
+    // ! creates a new one copy (clone) with predefined logic changes (mutations)
     const cancelledBooking = new Booking(
       this.id,
       this.destination,
@@ -35,7 +49,15 @@ export class App {
     return booking;
   }
 
+  public cancelBookingClone(booking: Booking): Booking {
+    // ! Send mutations
+    const cancelled = booking.clone({ status: "Cancelled" });
+    // ! original record is preserved; operation can be undone and tracked
+    return cancelled;
+  }
+
   public cancelBooking(booking: Booking): Booking {
+    // ! expect mutations inside
     const cancelled = booking.cancel();
     // ! original record is preserved; operation can be undone and tracked
     return cancelled;
@@ -45,5 +67,7 @@ export class App {
 const app = new App();
 const booking = app.getBooking();
 console.log("💚 Booking:", booking);
-const cancelled = app.cancelBooking(booking);
-console.log("🚫 Cancelled booking:", cancelled);
+const cancelledMutation = app.cancelBookingClone(booking);
+console.log("🚫 Cancelled booking:", cancelledMutation);
+const cancelledLogic = app.cancelBooking(booking);
+console.log("🚫 Cancelled booking:", cancelledLogic);
