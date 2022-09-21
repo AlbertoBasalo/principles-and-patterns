@@ -46,7 +46,12 @@ export class SimpleFormatter implements Formatter {
   }
 }
 export class LoggerFormatterFactory {
+  private static readonly default = "simple";
   public static createFormatter(type: "json" | "simple"): Formatter {
+    if (!type) {
+      // ! could be based on environment variables instead of concrete parameters
+      type = LoggerFormatterFactory.default;
+    }
     if (type === "json") {
       return new JsonFormatter();
     } else {
@@ -65,6 +70,7 @@ export class Logger {
 export class Client {
   private readonly logger: Logger;
   constructor() {
+    // ! use factories to instantiate objects of certain types
     const writer = LoggerWriterFactory.createWriter("textFile");
     const formatter = LoggerFormatterFactory.createFormatter("json");
     this.logger = new Logger(formatter, writer);
