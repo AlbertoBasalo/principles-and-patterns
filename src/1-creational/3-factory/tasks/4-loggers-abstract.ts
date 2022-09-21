@@ -8,11 +8,11 @@ type LogEntry = {
   timestamp: Date;
 };
 
-interface Writer {
-  write(entry: string): void;
-}
 interface Formatter {
   format(entry: LogEntry): string;
+}
+interface Writer {
+  write(entry: string): void;
 }
 
 class JsonFormatter implements Formatter {
@@ -37,15 +37,6 @@ class TextFileWriter implements Writer {
   }
 }
 
-class LoggerWriterFactory {
-  public static createWriter(type: string): Writer {
-    if (type === "console") {
-      return new ConsoleWriter();
-    } else {
-      return new TextFileWriter();
-    }
-  }
-}
 class LoggerFormatterFactory {
   public static createFormatter(type: string): Formatter {
     if (type === "json") {
@@ -55,7 +46,15 @@ class LoggerFormatterFactory {
     }
   }
 }
-
+class LoggerWriterFactory {
+  public static createWriter(type: string): Writer {
+    if (type === "console") {
+      return new ConsoleWriter();
+    } else {
+      return new TextFileWriter();
+    }
+  }
+}
 class LoggerAbstractFactory {
   public static create(
     factory: "formatter" | "writer",

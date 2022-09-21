@@ -63,12 +63,12 @@ class Logger {
   }
 }
 
-// ! With a new class, there is no necessity to change the current one (Open/Close)
+// ! Programing a new class, there is no necessity to change the current one (Open/Close)
 
 class LoggerBuilder {
   public static build(formatter: Formatter, writer: Writer): Logger {
     if (formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
-      // ! Check before any creation, allows easy fallback defaults
+      // ! Check before any creation, allows easy fallback to defaults
       throw "Incompatible formatter";
     }
     const logger = new Logger();
@@ -82,6 +82,7 @@ class LoggerBuilder {
 class Client {
   private readonly logger: Logger;
   constructor() {
+    // ! The invariant rule (both formatter and writer are required) is explicit
     this.logger = LoggerBuilder.build(new JsonFormatter(), new ConsoleWriter());
   }
   public log(entry: LogEntry) {

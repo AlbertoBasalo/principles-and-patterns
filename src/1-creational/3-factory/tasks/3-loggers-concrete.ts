@@ -8,30 +8,6 @@ export type LogEntry = {
   timestamp: Date;
 };
 
-export interface Writer {
-  write(entry: string): void;
-}
-export class ConsoleWriter implements Writer {
-  public write(entry: string): void {
-    console.log(entry);
-  }
-}
-export class TextFileWriter implements Writer {
-  private readonly filePath = path.resolve(__dirname, "./log.txt");
-  public write(entry: string): void {
-    fs.appendFileSync(this.filePath, entry + "\n");
-  }
-}
-export class LoggerWriterFactory {
-  public static createWriter(type: "console" | "textFile"): Writer {
-    if (type === "console") {
-      return new ConsoleWriter();
-    } else {
-      return new TextFileWriter();
-    }
-  }
-}
-
 export interface Formatter {
   format(entry: LogEntry): string;
 }
@@ -60,6 +36,30 @@ export class LoggerFormatterFactory {
   }
 }
 
+export interface Writer {
+  write(entry: string): void;
+}
+export class ConsoleWriter implements Writer {
+  public write(entry: string): void {
+    console.log(entry);
+  }
+}
+export class TextFileWriter implements Writer {
+  private readonly filePath = path.resolve(__dirname, "./log.txt");
+  public write(entry: string): void {
+    fs.appendFileSync(this.filePath, entry + "\n");
+  }
+}
+export class LoggerWriterFactory {
+  public static createWriter(type: "console" | "textFile"): Writer {
+    if (type === "console") {
+      return new ConsoleWriter();
+    } else {
+      return new TextFileWriter();
+    }
+  }
+}
+
 export class Logger {
   constructor(private readonly formatter: Formatter, private readonly writer: Writer) {}
   public log(entry: LogEntry) {
@@ -71,8 +71,8 @@ export class Client {
   private readonly logger: Logger;
   constructor() {
     // ! use factories to instantiate objects of certain types
-    const writer = LoggerWriterFactory.createWriter("textFile");
     const formatter = LoggerFormatterFactory.createFormatter("json");
+    const writer = LoggerWriterFactory.createWriter("textFile");
     this.logger = new Logger(formatter, writer);
   }
   public log(entry: LogEntry) {
