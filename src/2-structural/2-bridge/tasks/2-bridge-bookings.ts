@@ -1,16 +1,17 @@
 // ! interface operator allows us to work with different operators
-export interface Operator {
+export interface SpaceOperator {
   getAvailableSeats(flightId: string): number;
   getPrice(flightId: string): number;
   createBooking(flightId: string, passengers: number): string;
 }
 
 // ! interface agency allows us to work with different agencies
-export interface Agency {
+export interface TourismAgency {
   makePayment(amount: number): void;
   bookTrip(flightId: string, passengers: number): string;
 }
-export class SpaceX implements Operator {
+
+export class SpaceX implements SpaceOperator {
   constructor() {
     console.log("Spacial flight operator SpaceX ready to work");
   }
@@ -25,7 +26,7 @@ export class SpaceX implements Operator {
   }
 }
 
-export class BlueOrigin implements Operator {
+export class BlueOrigin implements SpaceOperator {
   constructor() {
     console.log("Spacial flight operator BlueOrigin ready to work");
   }
@@ -40,8 +41,8 @@ export class BlueOrigin implements Operator {
   }
 }
 
-export class SpaceTravels implements Agency {
-  private readonly operator: Operator;
+export class SpaceTravels implements TourismAgency {
+  private readonly operator: SpaceOperator;
   constructor() {
     this.operator = new SpaceX();
     console.log("Space tourism agency SpaceTravels ready to work");
@@ -60,8 +61,8 @@ export class SpaceTravels implements Agency {
   }
 }
 
-export class AstroidBookings implements Agency {
-  private readonly operator: Operator;
+export class AstroidBookings implements TourismAgency {
+  private readonly operator: SpaceOperator;
   constructor() {
     this.operator = new BlueOrigin();
     console.log("Space tourism agency AstroidBookings ready to work");
@@ -81,13 +82,13 @@ export class AstroidBookings implements Agency {
 }
 export class Client {
   constructor() {}
-  // ! externally they behave the same
   public goToMars(): string {
-    const agency: Agency = new SpaceTravels();
+    const agency: TourismAgency = new SpaceTravels();
     return agency.bookTrip("Mars", 2);
   }
+  // ! externally they behave the same
   public goToTheEarthOrbit(): string {
-    const agency: Agency = new AstroidBookings();
+    const agency: TourismAgency = new AstroidBookings();
     return agency.bookTrip("Earth Orbit", 2);
   }
 }
