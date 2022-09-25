@@ -1,6 +1,6 @@
+/* eslint-disable max-params */
 type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
 export class Booking {
-  // eslint-disable-next-line max-params
   constructor(
     public id: number,
     public trip: string,
@@ -22,21 +22,10 @@ export class Agency implements BookingCreator {
     const user = "";
     return new Booking(bookingId, trip, user, price, "Pending", new Date(), new Date());
   }
-  // public cancelBooking(booking: Booking): Booking {
-  //   return new Booking(
-  //     booking.id,
-  //     booking.trip,
-  //     booking.user,
-  //     booking.price,
-  //     "Cancelled",
-  //     booking.createdAt,
-  //     new Date()
-  //   );
-  // }
 }
 
-export class AgencyCanceller implements BookingCreator {
-  constructor(private agency: BookingCreator) {}
+export class AgencyDecorator implements BookingCreator {
+  constructor(private agency: BookingCreator = new Agency()) {}
 
   public createBooking(trip: string, price: number): Booking {
     return this.agency.createBooking(trip, price);
@@ -56,17 +45,20 @@ export class AgencyCanceller implements BookingCreator {
 
 export class Client {
   private bookingCreation: BookingCreator;
-  private bookingCanceller: AgencyCanceller;
+  private agency: AgencyDecorator;
   constructor() {
+    // ! no changes to already working code
     this.bookingCreation = new Agency();
-    this.bookingCanceller = new AgencyCanceller(this.bookingCreation);
+    // ! add new code
+    this.agency = new AgencyDecorator(this.bookingCreation);
   }
 
   public createBooking(trip: string, price: number): Booking {
     return this.bookingCreation.createBooking(trip, price);
   }
   public cancelBooking(booking: Booking): Booking {
-    return this.bookingCanceller.cancelBooking(booking);
+    // ! add new functionality
+    return this.agency.cancelBooking(booking);
   }
 }
 
