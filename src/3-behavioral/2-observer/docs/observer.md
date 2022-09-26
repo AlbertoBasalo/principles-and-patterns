@@ -1,6 +1,6 @@
 # Observer
 
-## Decouples event emitters from event processors notifying changes to subscribers
+## Decouples event **emitters** from event **processors** notifying **changes** to **subscribers**
 
 ### Links
 
