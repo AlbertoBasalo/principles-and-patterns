@@ -1,16 +1,42 @@
+/* eslint-disable max-lines */
 export interface Command {
   execute(payload: string): void;
   undo?(payload: string): void;
 }
 
+// each action is a class with a method for execute the logic
+// and (optionally) an method to undo the logic (if possible)
+export class CommandAlfa implements Command {
+  constructor(private receiver: Receiver) {}
+
+  public execute(payload: string): void {
+    this.receiver.doSomethingAlfa(payload);
+  }
+  public undo(payload: string): void {
+    this.receiver.undoSomethingAlfa(payload);
+  }
+}
+export class CommandBravo implements Command {
+  constructor(private receiver: Receiver) {}
+  public execute(payload: string): void {
+    this.receiver.doSomethingBravo(payload);
+  }
+  public undo(payload: string): void {
+    this.receiver.undoSomethingBravo(payload);
+  }
+}
+
+// A state management class that orchestrate and tracks all business actions
 export class Invoker {
+  // all available actions
   private catalog: { action: string; command: Command }[] = [];
+  // all executed actions
   private history: { timestamp: number; action: string; payload: string }[] = [];
 
   public register(action: string, command: Command) {
     this.catalog.push({ action, command });
   }
-
+  // aka execute
   public dispatch(action: string, payload: string): void {
     const actionCommand = this.catalog.find(c => c.action === action);
     if (!actionCommand) {
@@ -52,25 +78,19 @@ export class Invoker {
   }
 }
 
+// receivers are (optional) business objects that really implements the logic
 export class Receiver {
   public doSomethingAlfa(payload: string) {
     console.log(`🅰️ CommandAlfa: ${payload}`);
   }
+  public undoSomethingAlfa(payload: string) {
+    console.log(`🗑️ 🅰️ CommandAlfa: ${payload}`);
+  }
   public doSomethingBravo(payload: string) {
     console.log(`🅱️ CommandBravo: ${payload}`);
   }
-}
-
-export class CommandAlfa implements Command {
-  constructor(private receiver: Receiver) {}
-  public execute(payload: string): void {
-    this.receiver.doSomethingAlfa(payload);
-  }
-}
-export class CommandBravo implements Command {
-  constructor(private receiver: Receiver) {}
-  public execute(payload: string): void {
-    this.receiver.doSomethingBravo(payload);
+  public undoSomethingBravo(payload: string) {
+    console.log(`🗑️ 🅱️ CommandBravo: ${payload}`);
   }
 }
 

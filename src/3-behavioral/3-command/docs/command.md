@@ -1,6 +1,6 @@
 # Command
 
-## Takes the definition of actions from methods to classes increasing its versatility
+## Takes the definition of **actions** _from methods to classes_ increasing its **versatility**
 
 ### Links
 
