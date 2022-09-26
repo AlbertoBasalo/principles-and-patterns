@@ -1,6 +1,6 @@
 # Strategy
 
-## Choose an implementation and use it on production
+## Choose an implementation **at run time** and use it
 
 ### Links
 

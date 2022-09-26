@@ -15,7 +15,17 @@ export class ConcreteStrategyB implements Strategy {
 }
 
 export class Context {
-  constructor(private strategy: Strategy = new ConcreteStrategyA()) {}
+  private strategy!: Strategy;
+  constructor(strategy?: Strategy) {
+    if (!strategy) {
+      this.strategy = this.chooseFromEnvironment();
+    } else {
+      this.strategy = strategy;
+    }
+  }
+  private chooseFromEnvironment(): Strategy {
+    return new ConcreteStrategyA();
+  }
 
   public setStrategy(strategy: Strategy): void {
     this.strategy = strategy;
@@ -30,3 +40,5 @@ const context = new Context();
 console.log(context.doStuff("Hello")); // Hello 🅰️
 context.setStrategy(new ConcreteStrategyB());
 console.log(context.doStuff("Hello")); // hello 🅱️
+context.setStrategy(new ConcreteStrategyA());
+console.log(context.doStuff("Hello")); // Hello 🅰️

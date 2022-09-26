@@ -65,22 +65,3 @@ export class Logger {
     this.writer.write(this.formatter.format(entry));
   }
 }
-
-export class Client {
-  private readonly logger: Logger;
-  constructor() {
-    const writer = LoggerWriterFactory.createWriter("textFile");
-    const formatter = LoggerFormatterFactory.createFormatter("json");
-    this.logger = new Logger(writer, formatter);
-  }
-  public log(entry: LogEntry) {
-    this.logger.log(entry);
-  }
-}
-
-const client = new Client();
-client.log({
-  category: "info",
-  message: "Hello World",
-  timestamp: new Date(),
-});
