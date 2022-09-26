@@ -1,6 +1,6 @@
 # Template Method
 
-## Ensure common behavior and allow custom implementations
+## Ensure **common** behavior and allow **custom** implementations
 
 ### Links
 
