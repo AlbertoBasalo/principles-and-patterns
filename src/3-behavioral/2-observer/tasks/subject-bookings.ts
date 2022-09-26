@@ -1,4 +1,4 @@
-import { Agency, Booking } from "./bookings";
+import { Agency, Booking } from "./agency";
 import { Observer } from "./observer-logger";
 
 export interface Observable {

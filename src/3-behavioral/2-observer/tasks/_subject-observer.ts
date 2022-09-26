@@ -1,5 +1,8 @@
-import { Agency, Booking } from "./bookings";
+import { Agency, Booking } from "./agency";
 import { Logger } from "./logger";
+
+// ToDo : use a subject-observer pair to avoid use logger directly
+
 export class Client {
   private agency: Agency;
   private logger: Logger = new Logger();
