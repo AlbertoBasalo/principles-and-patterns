@@ -1,5 +1,6 @@
 import { CommonEvent, CommonEventService } from "./common-event.library";
 import { ConsoleWriter, Formatter, LogEntry, Logger } from "./logger";
+
 export class CommonEventFormatAdapter implements Formatter {
   private readonly commonEventService: CommonEventService = new CommonEventService();
 
@@ -26,6 +27,7 @@ export class CommonEventFormatAdapter implements Formatter {
     return eventMessage.join("\n");
   }
 }
+
 export class Client {
   private readonly logger: Logger;
   constructor() {
