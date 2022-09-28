@@ -1,4 +1,4 @@
-import { ConsoleWriter, JsonFormatter, LogEntry, Logger, SimpleFormatter, TextFileWriter } from "./_logger";
+import { ConsoleWriter, JsonFormatter, LogEntry, Logger, SimpleFormatter, TextFileWriter } from "./logger";
 
 export class LoggerStrategyFactory {
   private static defaultStrategy = new Logger(new ConsoleWriter(), new SimpleFormatter());

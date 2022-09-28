@@ -1,4 +1,4 @@
-import { ConsoleWriter, Formatter, JsonFormatter, LogEntry, SimpleFormatter, TextFileWriter, Writer } from "./_logger";
+import { ConsoleWriter, Formatter, JsonFormatter, LogEntry, SimpleFormatter, TextFileWriter, Writer } from "./logger";
 
 export type EntryStrategy = { writer: Writer; formatter: Formatter };
 

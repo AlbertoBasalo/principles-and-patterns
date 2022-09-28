@@ -1,4 +1,4 @@
-import { LogEntry, Logger, LoggerFormatterFactory, LoggerWriterFactory } from "./_logger";
+import { LogEntry, Logger, LoggerFormatterFactory, LoggerWriterFactory } from "./logger";
 
 export class Client {
   private readonly logger: Logger;
