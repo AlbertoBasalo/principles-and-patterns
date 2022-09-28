@@ -36,9 +36,9 @@ export class Context {
   }
 }
 
-const context = new Context();
+let context = new Context();
 console.log(context.doStuff("Hello")); // Hello 🅰️
 context.setStrategy(new ConcreteStrategyB());
 console.log(context.doStuff("Hello")); // hello 🅱️
-context.setStrategy(new ConcreteStrategyA());
+context = new Context(new ConcreteStrategyA());
 console.log(context.doStuff("Hello")); // Hello 🅰️
