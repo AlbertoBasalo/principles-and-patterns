@@ -1,5 +1,5 @@
 import { Agency, Booking } from "./agency";
-import { Observer } from "./observer-logger";
+import { Observer } from "./logger.observer";
 
 export interface Observable {
   subscribe(observer: Observer): void;

@@ -1,6 +1,6 @@
 import { Agency, Booking } from "./agency";
-import { LoggerObserver } from "./observer-logger";
-import { AgencySubject } from "./subject-bookings";
+import { AgencySubject } from "./agency.subject";
+import { LoggerObserver } from "./logger.observer";
 
 export class Client {
   private agency: Agency;
