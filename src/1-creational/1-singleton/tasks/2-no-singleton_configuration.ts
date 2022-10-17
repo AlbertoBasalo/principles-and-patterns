@@ -4,7 +4,7 @@ import * as path from "path";
 import { Configuration } from "./configuration.model";
 
 // A service that loads the configuration from a file
-export class ConfigurationService {
+class ConfigurationService {
   public readonly configuration: Configuration;
 
   constructor() {
@@ -23,7 +23,7 @@ export class ConfigurationService {
 const configuration = new ConfigurationService().configuration;
 
 // high level class
-export class App {
+class App {
   // ToDo: 🤢 duplicated load and possible inconsistency
   private configurationService = new ConfigurationService();
 
@@ -41,7 +41,7 @@ export class App {
 }
 
 // low level class
-export class Repository {
+class Repository {
   // ToDo: 🤢 dependency hell
   constructor(private configuration: Configuration) {}
   public fetch() {

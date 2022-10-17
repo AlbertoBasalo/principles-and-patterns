@@ -1,12 +1,7 @@
+// ! npm run 1-3-2
 import * as fs from "fs";
 import * as path from "path";
-
-type LogCategory = "info" | "error" | "debug";
-type LogEntry = {
-  category: LogCategory;
-  message: string;
-  timestamp: Date;
-};
+import { LogEntry } from "./log-entry.model";
 
 class Logger {
   private readonly filePath = path.resolve(__dirname, "./log.txt");
@@ -14,10 +9,8 @@ class Logger {
   constructor(public formatter: "json" | "simple", public writer: "console" | "textFile") {}
 
   public log(entry: LogEntry) {
-    if (!this.writer || !this.formatter) {
-      throw new Error("Logger is not configured");
-    }
     let message = "";
+    // ToDo: 🤢 complex if-else on every log call
     if (this.formatter == "json") {
       message = this.formatJSON(entry);
     } else {
@@ -48,9 +41,11 @@ class Logger {
   }
 }
 
+// a consumer class
 class Client {
   private readonly logger: Logger;
   constructor() {
+    // ToDo: 🤢 configure every logger instance
     this.logger = new Logger("simple", "console");
   }
   public log(entry: LogEntry) {
@@ -58,6 +53,7 @@ class Client {
   }
 }
 
+// main program
 const client = new Client();
 client.log({
   category: "info",

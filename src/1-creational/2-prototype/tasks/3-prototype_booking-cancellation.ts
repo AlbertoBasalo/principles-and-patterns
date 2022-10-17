@@ -2,7 +2,7 @@
 
 import { BookingStatus } from "./booking-status.type";
 
-export class Booking {
+class Booking {
   // * private properties for internal use only
   private _id: string = Date.now().toString();
   public get id(): string {
@@ -44,7 +44,7 @@ export class Booking {
   }
 }
 
-export class App {
+class App {
   public createBooking(): Booking {
     const booking = new Booking("🌖 The Moon", new Date(), 100);
     // booking.destination = "🌍 The Earth"; // * error

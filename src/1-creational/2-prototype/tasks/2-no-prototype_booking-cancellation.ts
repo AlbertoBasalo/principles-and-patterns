@@ -1,7 +1,7 @@
 // ! npm run 1-2-2
 import { BookingStatus } from "./booking-status.type";
 
-export class Booking {
+class Booking {
   public readonly id: string = Date.now().toString();
   public readonly createdOn: Date | null = new Date();
   public updatedOn: Date | null = null;
@@ -15,7 +15,7 @@ export class Booking {
   ) {}
 }
 
-export class App {
+class App {
   public createBooking(): Booking {
     const booking = new Booking("🌖 The Moon", new Date(), 100);
     return booking;

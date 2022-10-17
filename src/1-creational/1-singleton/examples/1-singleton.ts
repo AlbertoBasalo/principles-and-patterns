@@ -1,6 +1,6 @@
 // ! npm run 1-1-1
 
-export class Singleton {
+class Singleton {
   private static instance: Singleton;
   public readonly timestamp: number = Date.now();
   public readonly payload: unknown;

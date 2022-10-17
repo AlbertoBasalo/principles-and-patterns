@@ -12,17 +12,6 @@
 - https://javascript.plainenglish.io/design-patterns-with-typescript-examples-factory-method-4d145887b141
 - https://blog.upperdine.dev/patterns-that-every-developer-should-know#heading-pattern-3-factory
 
-### Examples
-
-```bash
-# Examples
-npm run 1-3-1
-npm run 1-3-2
-# Tasks
-npm run 1-3-3
-npm run 1-3-4
-```
-
 ### Tasks
 
 - [x] Logger writers (console, file) logger formatters (json, simple)

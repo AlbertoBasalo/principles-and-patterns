@@ -1,13 +1,9 @@
+// ! npm run 1-3-2
 import * as fs from "fs";
 import * as path from "path";
+import { LogEntry } from "./log-entry.model";
 
-type LogCategory = "info" | "error" | "debug";
-type LogEntry = {
-  category: LogCategory;
-  message: string;
-  timestamp: Date;
-};
-
+// * interfaces
 interface Formatter {
   format(entry: LogEntry): string;
 }
@@ -15,6 +11,7 @@ interface Writer {
   write(entry: string): void;
 }
 
+// * concrete implementations
 class JsonFormatter implements Formatter {
   public format(entry: LogEntry): string {
     return JSON.stringify(entry);
@@ -37,8 +34,14 @@ class TextFileWriter implements Writer {
   }
 }
 
+// * factories
 class LoggerFormatterFactory {
-  public static createFormatter(type: string): Formatter {
+  private static readonly default = "simple";
+  public static createFormatter(type: "json" | "simple"): Formatter {
+    if (!type) {
+      // ! could be based on environment variables instead of concrete parameters
+      type = LoggerFormatterFactory.default;
+    }
     if (type === "json") {
       return new JsonFormatter();
     } else {
@@ -47,42 +50,32 @@ class LoggerFormatterFactory {
   }
 }
 class LoggerWriterFactory {
-  public static createWriter(type: string): Writer {
+  public static createWriter(type: "console" | "textFile"): Writer {
     if (type === "console") {
       return new ConsoleWriter();
     } else {
       return new TextFileWriter();
     }
-  }
-}
-class LoggerAbstractFactory {
-  public static create(
-    factory: "formatter" | "writer",
-    dependency: "console" | "textFile" | "json" | "simple"
-  ): Writer | Formatter {
-    if (factory == "formatter") {
-      return LoggerFormatterFactory.createFormatter(dependency);
-    } else {
-      return LoggerWriterFactory.createWriter(dependency);
-    }
-    // ToDo: check for inconsistencies
+    // ! could be implemented as an structure to avoid if-else logic
   }
 }
 
 class Logger {
   constructor(private readonly formatter: Formatter, private readonly writer: Writer) {}
   public log(entry: LogEntry) {
-    this.writer.write(this.formatter.format(entry));
+    // * much cleaner
+    const message = this.formatter.format(entry);
+    this.writer.write(message);
   }
 }
 
 class Client {
   private readonly logger: Logger;
   constructor() {
-    const formatter = LoggerAbstractFactory.create("formatter", "simple") as Formatter;
-    const writer = LoggerAbstractFactory.create("writer", "console") as Writer;
+    // * use factories to instantiate objects of certain types
+    const formatter = LoggerFormatterFactory.createFormatter("json");
+    const writer = LoggerWriterFactory.createWriter("textFile");
     this.logger = new Logger(formatter, writer);
-    // ! useful for generic injection systems with previous registering processes
   }
   public log(entry: LogEntry) {
     this.logger.log(entry);

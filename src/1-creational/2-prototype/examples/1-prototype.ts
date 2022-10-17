@@ -1,14 +1,14 @@
 // ! npm run 1-2-1
 
 // * interface to be implemented by all prototypes
-export interface Prototype<T> {
+interface Prototype<T> {
   // * method to clone the prototype with custom mutations
   clone(): T;
 }
 
-export type Primitive = string | number | boolean;
+type Primitive = string | number | boolean;
 
-export class Product implements Prototype<Product> {
+class Product implements Prototype<Product> {
   public id = Math.random().toString();
   public timestamp = new Date().getTime();
   public name = "";

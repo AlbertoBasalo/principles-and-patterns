@@ -4,7 +4,7 @@ import * as path from "path";
 import { Configuration } from "./configuration.model";
 
 // The service is now a singleton
-export class ConfigurationService {
+class ConfigurationService {
   private static instance: ConfigurationService;
   public readonly configuration!: Configuration; // aka payload
   // ! could be improved by using a getter returning a copy of the configuration
@@ -32,7 +32,7 @@ export class ConfigurationService {
 // * no more global vars
 
 // high level class
-export class App {
+class App {
   // * dynamic access to payload
   private configuration = new ConfigurationService().configuration;
 
@@ -52,7 +52,7 @@ export class App {
   }
 }
 
-export class Repository {
+class Repository {
   // * No more unneeded dependency params
   constructor() {}
   public fetch() {
