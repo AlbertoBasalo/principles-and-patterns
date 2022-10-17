@@ -1,20 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
+import { Configuration } from "./configuration.model";
 
-export type Configuration = {
-  port: number;
-  host: string;
-  repository: {
-    server: string;
-    database: string;
-    user: string;
-    password: string;
-  };
-  security: {
-    secret: string;
-    expiresIn: string;
-  };
-};
 export class ConfigurationService {
   private static instance: ConfigurationService;
   public readonly configuration!: Configuration;

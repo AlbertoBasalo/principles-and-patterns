@@ -1,21 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
+import { Configuration } from "./configuration.model";
 
-export type Configuration = {
-  port: number;
-  host: string;
-  repository: {
-    server: string;
-    database: string;
-    user: string;
-    password: string;
-  };
-  security: {
-    secret: string;
-    expiresIn: string;
-  };
-};
-
+// A service that loads the configuration from a file
 export class ConfigurationService {
   public readonly configuration: Configuration;
 
@@ -31,23 +18,28 @@ export class ConfigurationService {
     return configuration;
   }
 }
-const configuration = new ConfigurationService().configuration; // ToDo: 🤢 global variable
+// ToDo: 🤢 used global variable
+const configuration = new ConfigurationService().configuration;
+
+// high level class
 export class App {
-  private configurationService = new ConfigurationService(); // ToDo: 🤢 possible duplication
+  // ToDo: 🤢 duplicated load and possible inconsistency
+  private configurationService = new ConfigurationService();
 
   public static main(): void {
     console.log("🏠 App main static...");
-    console.log(configuration);
+    console.log(configuration); // using the global variable
   }
 
   public run() {
     console.log("👟  App running...");
-    console.log(this.configurationService.configuration);
-    const repository = new Repository(this.configurationService.configuration);
+    console.log(this.configurationService.configuration); // using the duplicated instance
+    const repository = new Repository(this.configurationService.configuration); // passing the duplicated instance
     repository.fetch();
   }
 }
 
+// low level class
 export class Repository {
   // ToDo: 🤢 dependency hell
   constructor(private configuration: Configuration) {}
@@ -57,6 +49,7 @@ export class Repository {
   }
 }
 
+// main program
 new App().run();
 App.main();
 new App().run();

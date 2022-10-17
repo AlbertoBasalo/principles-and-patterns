@@ -17,10 +17,9 @@
     "url": "https://github.com/AlbertoBasalo/principles-and-patterns/issues"
   },
   "scripts": {
-    "1-1-1": "ts-node ./src/1-creational/1-singleton/examples/1-singleton-static.ts",
-    "1-1-2": "ts-node ./src/1-creational/1-singleton/examples/2-singleton-instance.ts",
-    "1-1-3": "ts-node ./src/1-creational/1-singleton/examples/3-singleton-value.ts",
-    "1-1-4": "ts-node ./src/1-creational/1-singleton/tasks/4-configuration.ts",
+    "1-1-1": "ts-node ./src/1-creational/1-singleton/examples/1-singleton.ts",
+    "1-1-2": "ts-node ./src/1-creational/1-singleton/tasks/2-no-singleton_configuration.ts",
+    "1-1-3": "ts-node ./src/1-creational/1-singleton/tasks/3-singleton-configuration.ts",
     "1-2-1": "ts-node ./src/1-creational/2-prototype/examples/1-prototype-shallow.ts",
     "1-2-2": "ts-node ./src/1-creational/2-prototype/examples/2-prototype-deep.ts",
     "1-2-3": "ts-node ./src/1-creational/2-prototype/tasks/3-booking-cancellation.ts",

@@ -14,17 +14,6 @@
 - https://blog.upperdine.dev/patterns-that-every-developer-should-know#heading-pattern-1-singleton
 - https://www.patterns.dev/posts/singleton-pattern/
 
-### Examples
-
-```bash
-# Examples
-npm run 1-1-1
-npm run 1-1-2
-npm run 1-1-3
-# Tasks
-npm run 1-1-4
-```
-
 ### Tasks
 
 - [x] Application configuration
