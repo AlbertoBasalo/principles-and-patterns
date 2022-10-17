@@ -1,4 +1,4 @@
-// npm run 1-1-1
+// ! npm run 1-1-1
 
 export class Singleton {
   private static instance: Singleton;
@@ -24,6 +24,7 @@ export class Singleton {
 // Static consumer class
 class ClientA {
   public static main(): void {
+    // * access singleton static instance
     const instance = Singleton.getInstance();
     console.log(instance.timestamp);
     console.log(instance.payload);
@@ -32,10 +33,11 @@ class ClientA {
 // Dynamic consumer class
 class ClientB {
   public doStuff(): void {
+    // * access singleton dynamic instance
     const instance = new Singleton();
     console.log(instance.timestamp);
     console.log(instance.payload);
-    // also using the static method
+    // * also using the static method
     const instance2 = Singleton.getInstance();
     console.log(instance2.timestamp);
     console.log(instance2.payload);

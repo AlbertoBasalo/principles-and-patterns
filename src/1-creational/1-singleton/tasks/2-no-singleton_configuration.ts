@@ -1,3 +1,4 @@
+// ! npm run 1-1-2
 import * as fs from "fs";
 import * as path from "path";
 import { Configuration } from "./configuration.model";
