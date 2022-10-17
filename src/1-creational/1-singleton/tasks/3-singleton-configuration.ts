@@ -2,27 +2,22 @@ import * as fs from "fs";
 import * as path from "path";
 import { Configuration } from "./configuration.model";
 
+// The service is now a singleton
 export class ConfigurationService {
   private static instance: ConfigurationService;
-  public readonly configuration!: Configuration;
+  public readonly configuration!: Configuration; // aka payload
+  // ! could be improved by using a getter returning a copy of the configuration
 
   constructor() {
     if (!ConfigurationService.instance) {
-      this.configuration = this.load();
+      this.configuration = this.load(); // aka getPayload()
       ConfigurationService.instance = this;
     }
     return ConfigurationService.instance;
   }
 
   public static getInstance(): ConfigurationService {
-    if (!ConfigurationService.instance) {
-      ConfigurationService.instance = new ConfigurationService();
-    }
-    return ConfigurationService.instance;
-  }
-
-  public static getConfiguration(): Configuration {
-    return ConfigurationService.getInstance().configuration;
+    return new ConfigurationService();
   }
 
   private load() {
@@ -33,13 +28,15 @@ export class ConfigurationService {
     return configuration;
   }
 }
-// ! no more global vars
+// * no more global vars
 
+// high level class
 export class App {
-  private configurationService = new ConfigurationService();
+  // * dynamic access to payload
+  private configuration = new ConfigurationService().configuration;
 
   public static main(): void {
-    // ! different approaches for get the value
+    // * static access to payload
     const configuration = ConfigurationService.getInstance().configuration;
     console.log("🏠 App main static...");
     console.log(configuration);
@@ -47,19 +44,21 @@ export class App {
 
   public run() {
     console.log("👟  App running...");
-    console.log(this.configurationService.configuration);
-    // ! No more unneeded dependency params
+    console.log(this.configuration);
+    // * No more unneeded dependency params
     const repository = new Repository();
     repository.fetch();
   }
 }
 
 export class Repository {
+  // * No more unneeded dependency params
+  constructor() {}
   public fetch() {
-    // ! safe repetitive constructors calls
+    // * safe repetitive constructors calls
     const configurationService = new ConfigurationService();
     console.log("📦 Fetching data from repository");
-    console.log(configurationService.configuration?.repository);
+    console.log(configurationService.configuration.repository);
   }
 }
 
