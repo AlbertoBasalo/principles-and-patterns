@@ -2,11 +2,12 @@
 
 class Singleton {
   private static instance: Singleton;
-  public readonly timestamp: number = Date.now();
+  public readonly timestamp!: number;
   public readonly payload: unknown;
 
   constructor() {
     if (!Singleton.instance) {
+      this.timestamp = Date.now();
       this.payload = this.getPayload();
       Singleton.instance = this;
     }
@@ -41,6 +42,9 @@ class ClientB {
     const instance2 = Singleton.getInstance();
     console.log(instance2.timestamp);
     console.log(instance2.payload);
+    // * also avoid mutating or accessing the instance directly
+    // instance.payload = "mutated";
+    // console.log(Singleton.instance);
   }
 }
 
