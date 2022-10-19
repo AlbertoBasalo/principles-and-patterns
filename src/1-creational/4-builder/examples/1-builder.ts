@@ -82,11 +82,12 @@ export class Client {
 
 // main program
 const client = new Client();
+// ! using the builder
 const builderProduct1 = client.buildProduct(1);
 console.log("👷🏼 Builder 1️⃣", builderProduct1);
 const builderProduct2 = client.buildProduct(2);
 console.log("👷🏼 Builder 2️⃣", builderProduct2);
-// using director variation
+// ! using director variation
 const directorProduct1 = client.buildUsingDirector(1);
 console.log("👔 Director 1️⃣", directorProduct1);
 const directorProduct2 = client.buildUsingDirector(2);
