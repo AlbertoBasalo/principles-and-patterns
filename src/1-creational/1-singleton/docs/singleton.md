@@ -1,6 +1,6 @@
 # Singleton
 
-## Ensures that a class has **only one** instance, avoiding global variables
+## Ensures that a class has _only one_ instance, avoiding global variables
 
 ### Links
 

@@ -17,11 +17,26 @@ class Product implements Prototype<Product> {
   public arrayProperty: unknown[] = [];
 
   public clone(): Product {
-    const clone = this.getDeepClone();
+    return this.mutateNew();
+    // return this.mutateCloned();
+  }
+
+  private mutateNew() {
+    const newProduct = new Product();
+    // * copy all properties
+    newProduct.name = this.name;
+    newProduct.primitiveProperty = this.primitiveProperty;
+    newProduct.objectProperty = { ...this.objectProperty };
+    newProduct.arrayProperty = [...this.arrayProperty];
+    return newProduct;
+  }
+
+  private mutateCloned() {
+    const cloned = this.getDeepClone();
     // * mutate the clone
-    clone.id = Math.random().toString();
-    clone.timestamp = new Date().getTime();
-    return clone;
+    cloned.id = Math.random().toString();
+    cloned.timestamp = new Date().getTime();
+    return cloned;
   }
 
   private getDeepClone() {
