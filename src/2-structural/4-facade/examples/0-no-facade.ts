@@ -30,7 +30,7 @@ export class Client {
     return alphaResult;
   }
   public doSomethingBravoCharlie(): string {
-    // ToDo: reduce internal know how
+    // ToDo: reduce internal know how (inappropriate intimacy)
     const bravo = new Bravo();
     const bravoResult = bravo.methodBravo(this.doSomethingAlpha().length);
     const charlie = new Charlie();

@@ -1,6 +1,6 @@
 # Facade
 
-## Provides a **simple interface** to a set of _complex interfaces_ in a subsystem.
+## Provides _a simple_ interface to _a set of complex_ interfaces in a subsystem.
 
 ### Links
 
@@ -12,17 +12,6 @@
 - https://medium.com/globant/design-patterns-in-javascript-structural-106bc31953c9#502b
 -
 
-### Examples
-
-```bash
-# Examples
-npm run 2-4-0
-npm run 2-4-1
-# Tasks
-npm run 2-4-2
-npm run 2-4-3
-```
-
 ### Tasks
 
-- [ ] Create a facade to work with a complex system (bookings, payments, cancellations, etc.)
+- [x] Create a facade to work with a complex system (bookings, payments, cancellations, etc.)

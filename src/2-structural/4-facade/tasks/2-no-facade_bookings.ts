@@ -1,37 +1,14 @@
-export class Payments {
-  public makePayment(issue: string, amount: number): string {
-    return `${issue} ${amount} payed`;
-  }
-  public makeRefund(issue: string, amount: number): string {
-    return `${issue} ${amount} refunded`;
-  }
-}
-
-export class Bookings {
-  public getPrice(trip: string): number {
-    return 100;
-  }
-  public makeBooking(trip: string, payment: string): string {
-    return `${trip} with ${payment} booked`;
-  }
-  public cancelBooking(trip: string, payment: string): string {
-    return `${trip} with ${payment} canceled`;
-  }
-}
-
-export class Notifier {
-  public notify(trip: string, operation: string): string {
-    return `${trip} ${operation} notified to passenger`;
-  }
-}
+import { Bookings } from "./bookings";
+import { Notifier } from "./notifier";
+import { Payments } from "./payments";
 
 export class Client {
-  // ToDo: depends on three classes...
+  // ToDo: 🤢 depends on three classes...
   private bookings: Bookings = new Bookings();
   private payments: Payments = new Payments();
   private notifier: Notifier = new Notifier();
 
-  // ToDo: reduce internal know how
+  // ToDo: 🤢 too much internal know how (inappropriate intimacy)
   public createBooking(trip: string): string {
     const tripPrice = this.bookings.getPrice(trip);
     const paymentsResult = this.payments.makePayment(trip, tripPrice);
