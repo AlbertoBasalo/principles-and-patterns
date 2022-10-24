@@ -11,15 +11,15 @@ import {
   Writer,
 } from "./logger.service";
 
-// * builder ensures that the client class will not need to know too much about the logger
+// * 🤩 builder ensures that the client class will not need to know too much about the logger
 class LoggerBuilder {
   public static build(formatter: Formatter, writer: Writer): Logger {
     if (formatter instanceof JsonFormatter && writer instanceof TextFileWriter) {
-      // * detects incompatibility before the logger is created
+      // * 🤩 detects incompatibility before the logger is created
       throw "Incompatible formatter";
     }
     const logger = new Logger();
-    // * ensures correct order
+    // * 🤩 ensures correct order
     logger.setFormatter(new JsonFormatter());
     logger.setWriter(new ConsoleWriter());
     return logger;
@@ -27,7 +27,7 @@ class LoggerBuilder {
   // ! alternatively could be implemented as a dynamic flow
 }
 
-// * director is an abstraction on top of the builder to give clients what they want without knowing the internals
+// * 🤩 director is an abstraction on top of the builder to give clients what they want without knowing the internals
 class LoggerDirector {
   public static buildDefault(): Logger {
     return LoggerBuilder.build(new SimpleFormatter(), new TextFileWriter());
@@ -37,7 +37,7 @@ class LoggerDirector {
   }
 }
 
-// * consumers is way simpler
+// * 🤩 consumer is way simpler
 class Client {
   private readonly logger: Logger;
   constructor() {

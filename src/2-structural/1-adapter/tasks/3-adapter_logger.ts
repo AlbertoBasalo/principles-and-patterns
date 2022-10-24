@@ -1,19 +1,17 @@
+// ! npm run 2-1-3
 import { CommonEvent, CommonEventService } from "./common-event.library";
-import { ConsoleWriter, Formatter, LogEntry, Logger } from "./logger";
+import { LogEntry, Logger } from "./logger";
 
-export class CommonEventFormatAdapter implements Formatter {
-  private readonly commonEventService: CommonEventService = new CommonEventService();
+export class CommonEventAdapter implements Logger {
+  private commonEventService: CommonEventService = new CommonEventService();
 
-  public format(entry: LogEntry): string {
-    // ! adapt ours to theirs
+  public log(entry: LogEntry): void {
+    // * 🤩 knowledge of the proprietary format is encapsulated in the adapter
     const commonEvent = this.adaptLogEntryToCommonEvent(entry);
-    // ! make use of adapted functionality
     const commonEventMessage = this.commonEventService.createMessage(commonEvent);
-    // ! adapt theirs to ours
-    const logMessage = this.adaptCommonEventToLogMessage(commonEventMessage);
-    return logMessage;
+    this.commonEventService.writeMessage(commonEventMessage);
   }
-
+  // * 🤩 all the ugly stuff is hidden in the adapter
   private adaptLogEntryToCommonEvent(entry: LogEntry): CommonEvent {
     return {
       date: entry.timestamp,
@@ -23,17 +21,17 @@ export class CommonEventFormatAdapter implements Formatter {
       extension: [`msg=${entry.message}`],
     };
   }
-  private adaptCommonEventToLogMessage(eventMessage: string[]): string {
-    return eventMessage.join("\n");
-  }
 }
 
 export class Client {
+  // * 🤩 client classes are decoupled from the concrete implementation
   private readonly logger: Logger;
   constructor() {
-    this.logger = new Logger(new CommonEventFormatAdapter(), new ConsoleWriter());
+    // * 🤩 Could come from a factory
+    this.logger = new CommonEventAdapter();
   }
   public doThings() {
+    // * 🤩 client classes are decoupled from the interface
     this.logger.log({
       category: "info",
       message: "Hello World",

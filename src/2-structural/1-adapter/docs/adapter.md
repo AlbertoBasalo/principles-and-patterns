@@ -1,6 +1,6 @@
 # Adapter
 
-## Decouples third-party libraries (or legacy code) from **the application**
+## Decouples _third-party_ libraries (or _legacy_ code) from _the application_
 
 ### Links
 
@@ -10,15 +10,6 @@
 - https://medium.com/@mariusbongarts/design-patterns-with-real-life-typescript-examples-adapter-d183af1f1462
 - https://dev.to/zeeshanhshaheen/design-patterns-in-javascript-1pgm#adapter
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#adapter-pattern-wrapper-pattern-structural-design
-
-### Examples
-
-```bash
-# Examples
-npm run 2-1-1
-# Tasks
-npm run 2-1-2
-```
 
 ### Tasks
 

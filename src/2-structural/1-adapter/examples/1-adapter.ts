@@ -1,20 +1,21 @@
+// ! npm run 2-1-1
+
+// My interface of choice
 interface Alpha {
   propertyAlpha: string;
   methodAlpha(param: string): string;
 }
-
 class ConcreteAlpha implements Alpha {
   public propertyAlpha = "";
   public methodAlpha(param: string): string {
     return param;
   }
 }
-
+// The class that has an interface that needs to be adapted
 interface Bravo {
   propertyBravo: number;
   methodBravo(param: number): number;
 }
-
 class ConcreteBravo implements Bravo {
   public propertyBravo = 0;
   public methodBravo(param: number): number {
@@ -22,7 +23,9 @@ class ConcreteBravo implements Bravo {
   }
 }
 
+// The adapter class, that exposes my interface and wraps the class that needs to be adapted
 class BravoAdapter implements Alpha {
+  // Has an instance of the class that needs to be adapted
   constructor(private readonly bravo: Bravo) {}
 
   public get propertyAlpha(): string {
