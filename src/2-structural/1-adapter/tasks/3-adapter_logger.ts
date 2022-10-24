@@ -9,6 +9,7 @@ export class CommonEventAdapter implements Logger {
     // * 🤩 knowledge of the proprietary format is encapsulated in the adapter
     const commonEvent = this.adaptLogEntryToCommonEvent(entry);
     const commonEventMessage = this.commonEventService.createMessage(commonEvent);
+    // Todo: change the writer or make it configurable
     this.commonEventService.writeMessage(commonEventMessage);
   }
   // * 🤩 all the ugly stuff is hidden in the adapter

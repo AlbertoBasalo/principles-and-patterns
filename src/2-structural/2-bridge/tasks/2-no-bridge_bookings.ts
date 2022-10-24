@@ -1,7 +1,8 @@
-export class SpaceOperator {
+// ! npm run 2-2-2
+// a class to represent a company that offers spacial flights
+export class SpaceX {
   constructor() {
     console.log("Spacial flight operator SpaceX ready to work");
-    // ToDo: there is another space operator called BlueOrigin
   }
 
   public getAvailableSeats(flightId: string): number {
@@ -15,8 +16,9 @@ export class SpaceOperator {
   }
 }
 
-export class TourismAgency {
-  private readonly spaceX = new SpaceOperator();
+// a class to represent a company manage bookings for Space X flights
+export class SpaceTravels {
+  private readonly spaceX = new SpaceX();
 
   constructor() {
     console.log("Space tourism agency SpaceTravels ready to work");
@@ -36,8 +38,12 @@ export class TourismAgency {
   }
 }
 
+// ToDo: 😱 there is another space operator called BlueOrigin
+// ToDo: 😱 also with their own agency called AstroidBookings
+
 export class Client {
-  private readonly spaceTravels = new TourismAgency();
+  private readonly spaceTravels = new SpaceTravels();
+
   public goToMars(): string {
     return this.spaceTravels.bookTrip("Mars", 2);
   }

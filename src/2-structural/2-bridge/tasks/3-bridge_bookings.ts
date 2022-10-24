@@ -1,11 +1,12 @@
-// ! interface operator allows us to work with different operators
+// ! npm run 2-2-3
+// * 🤩 interface operator allows us to work with different operators
 export interface SpaceOperator {
   getAvailableSeats(flightId: string): number;
   getPrice(flightId: string): number;
   createBooking(flightId: string, passengers: number): string;
 }
 
-// ! interface agency allows us to work with different agencies
+// * 🤩 interface agency allows us to work with different agencies
 export interface TourismAgency {
   makePayment(amount: number): void;
   bookTrip(flightId: string, passengers: number): string;
@@ -46,7 +47,7 @@ export class SpaceTravels implements TourismAgency {
   constructor() {
     this.operator = new SpaceX();
     console.log("Space tourism agency SpaceTravels ready to work");
-    // ! internally they could be very different
+    // * 🤩 internally they could be very different
   }
   public makePayment(amount: number): void {
     console.log("💸 Agency making payment :" + amount);
@@ -66,7 +67,7 @@ export class AstroidBookings implements TourismAgency {
   constructor() {
     this.operator = new BlueOrigin();
     console.log("Space tourism agency AstroidBookings ready to work");
-    // ! and evolve independently
+    // * 🤩 and evolve independently
   }
   public makePayment(amount: number): void {
     console.log("💸 Agency making payment :" + amount);
@@ -86,7 +87,7 @@ export class Client {
     const agency: TourismAgency = new SpaceTravels();
     return agency.bookTrip("Mars", 2);
   }
-  // ! externally they behave the same
+  // * 🤩 externally they behave the same
   public goToTheEarthOrbit(): string {
     const agency: TourismAgency = new AstroidBookings();
     return agency.bookTrip("Earth Orbit", 2);

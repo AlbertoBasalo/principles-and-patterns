@@ -10,17 +10,6 @@
 - https://jsmanifest.com/bridge-design-patterin-in-javascript/
 - https://dev.to/coly010/the-bridge-pattern-design-patterns-meet-the-frontend-46fc
 
-### Examples
-
-```bash
-# Examples
-npm run 2-2-0
-npm run 2-2-1
-# Tasks
-npm run 2-2-2
-npm run 2-2-3
-```
-
 ### Tasks
 
 - [x] Create a bridge between travel agencies and flight operators

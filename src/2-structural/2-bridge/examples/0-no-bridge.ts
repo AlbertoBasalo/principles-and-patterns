@@ -1,9 +1,12 @@
+// ! npm run 2-2-0
+// a lower level class
 export class ImplementationWorker {
   public workHard(): string {
     return "👷🏼 Implementation working hard";
   }
 }
 
+// a higher level class
 export class AbstractionManager {
   private readonly implementation = new ImplementationWorker();
 
@@ -22,5 +25,6 @@ export class Client {
   }
 }
 
+// main program
 const client = new Client();
 console.log(client.doStuff());
