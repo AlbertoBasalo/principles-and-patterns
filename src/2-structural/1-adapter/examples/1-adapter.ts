@@ -26,7 +26,8 @@ class ConcreteBravo implements Bravo {
 // The adapter class, that exposes my interface and wraps the class that needs to be adapted
 class BravoAdapter implements Alpha {
   // Has an instance of the class that needs to be adapted
-  constructor(private readonly bravo: Bravo) {}
+  private bravo = new ConcreteBravo();
+  constructor() {}
 
   public get propertyAlpha(): string {
     return this.bravo.propertyBravo.toString();
@@ -51,8 +52,7 @@ class Client {
   }
 
   public doSomethingBravo(): string {
-    const bravo = new ConcreteBravo();
-    const bravoAdapter: Alpha = new BravoAdapter(bravo);
+    const bravoAdapter: Alpha = new BravoAdapter();
     // ! bravo behaves like alpha
     bravoAdapter.propertyAlpha = "2";
     return bravoAdapter.methodAlpha("2");

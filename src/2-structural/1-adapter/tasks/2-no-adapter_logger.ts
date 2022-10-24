@@ -10,15 +10,14 @@ export class Client {
   }
   public doThings() {
     // ToDo: 🤢 client classes are coupled to the interface
-    this.logger.writeMessage(
-      this.logger.createMessage({
-        date: new Date(),
-        host: "localhost",
-        device: "myApp",
-        severity: 0,
-        extension: ["msg=Hello World"],
-      })
-    );
+    const message = this.logger.createMessage({
+      date: new Date(),
+      host: "localhost",
+      device: "myApp",
+      severity: 0,
+      extension: ["msg=Hello World"],
+    });
+    this.logger.writeMessage(message);
   }
 }
 
