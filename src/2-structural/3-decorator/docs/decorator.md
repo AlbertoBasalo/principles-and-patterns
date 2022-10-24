@@ -1,22 +1,12 @@
 # Decorator
 
-## Adds functionality to a class without modifying it, meets **the OpenClose principle**.
+## Adds functionality to a class without modifying it, meets _the OpenClose principle_.
 
 ### Links
 
 - https://sbcode.net/typescript/decorator/
 - https://dev.to/zeeshanhshaheen/design-patterns-in-javascript-1pgm#decorator
 - https://dev.to/twinfred/design-patterns-in-javascript-1l2l#decorator-pattern-structural-design
-
-### Examples
-
-```bash
-# Examples
-npm run 2-3-1
-# Tasks
-npm run 2-3-2
-npm run 2-3-3
-```
 
 ### Tasks
 

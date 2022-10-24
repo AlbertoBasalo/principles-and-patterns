@@ -1,35 +1,23 @@
 /* eslint-disable max-params */
-type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
-export class Booking {
-  constructor(
-    public id: number,
-    public trip: string,
-    public user: string,
-    public price: number,
-    public status: BookingStatus,
-    public createdAt: Date,
-    public updatedAt: Date
-  ) {}
-}
+// ! npm run 2-3-3
+import { Agency } from "./Agency";
+import { Booking } from "./booking.model";
 
+// * 🤩 Decorator pattern needs an interface, but TS don`t force to change implementers
 export interface BookingCreator {
   createBooking(trip: string, price: number): Booking;
 }
 
-export class Agency implements BookingCreator {
-  public createBooking(trip: string, price: number): Booking {
-    const bookingId = Math.floor(Math.random() * 100);
-    const user = "";
-    return new Booking(bookingId, trip, user, price, "Pending", new Date(), new Date());
-  }
-}
-
+// * 🤩 Decorator class implements the interface and do more...
 export class AgencyDecorator implements BookingCreator {
+  // * 🤩 favor composition over inheritance
   constructor(private agency: BookingCreator = new Agency()) {}
 
+  // * 🤩 wrap calls to the decorated object
   public createBooking(trip: string, price: number): Booking {
     return this.agency.createBooking(trip, price);
   }
+  // * 🤩 add new functionality
   public cancelBooking(booking: Booking): Booking {
     return new Booking(
       booking.id,
@@ -44,20 +32,19 @@ export class AgencyDecorator implements BookingCreator {
 }
 
 export class Client {
-  private bookingCreation: BookingCreator;
   private agency: AgencyDecorator;
+
   constructor() {
-    // ! no changes to already working code
-    this.bookingCreation = new Agency();
-    // ! add new code
-    this.agency = new AgencyDecorator(this.bookingCreation);
+    // ! could use a creational pattern to create the decorated object
+    this.agency = new AgencyDecorator(new Agency());
   }
 
   public createBooking(trip: string, price: number): Booking {
-    return this.bookingCreation.createBooking(trip, price);
+    // * 🤩 no changes to already working code
+    return this.agency.createBooking(trip, price);
   }
   public cancelBooking(booking: Booking): Booking {
-    // ! add new functionality
+    // * 🤩 add new functionality
     return this.agency.cancelBooking(booking);
   }
 }

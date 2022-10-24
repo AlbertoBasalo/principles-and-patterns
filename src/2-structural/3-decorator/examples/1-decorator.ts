@@ -1,8 +1,9 @@
+// ! npm run 2-3-1
+// an initial functionality
 interface IComponent {
   property: string;
   method(param: string): string;
 }
-
 class Component implements IComponent {
   public property = "";
   public method(param: string): string {
@@ -10,22 +11,26 @@ class Component implements IComponent {
   }
 }
 
+// * a decorator to add more
 class Decorator implements IComponent {
+  // * internally there is a wrapped component
   private component: IComponent;
   constructor(component: IComponent) {
+    // prefer composition over inheritance
     this.component = component;
   }
   public get property(): string {
     return this.component.property;
   }
   public set property(value: string) {
-    // ! change internal behavior
+    // * change internal behavior
     this.component.property = this.replaceSpacesWithUnderscores(value);
   }
   public method(param: string): string {
-    // ! change internal behavior
+    // * change internal behavior
     return this.component.method(param).toUpperCase();
   }
+  // * add more features
   public moreFeatures: string[] = [];
 
   private replaceSpacesWithUnderscores(param: string): string {
@@ -41,9 +46,9 @@ export class Client {
   }
   public doOtherThings() {
     const decorator = new Decorator(new Component());
-    // ! same external behavior...
+    // * same external behavior...
     decorator.property = "good bye";
-    // ! ... or even more
+    // * ... or even more
     decorator.moreFeatures.push("Extended without change");
     return decorator.method(decorator.property);
   }
