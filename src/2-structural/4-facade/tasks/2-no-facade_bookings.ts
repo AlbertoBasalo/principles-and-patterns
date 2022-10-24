@@ -1,3 +1,4 @@
+// ! npm run 2-4-2
 import { Bookings } from "./bookings";
 import { Notifier } from "./notifier";
 import { Payments } from "./payments";

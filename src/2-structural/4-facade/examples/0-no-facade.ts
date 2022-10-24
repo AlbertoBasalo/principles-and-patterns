@@ -1,3 +1,5 @@
+// ! npm run 2-4-0
+
 export class Alpha {
   public propertyAlpha = "🅰️";
   public methodAlpha(param: string): string {
