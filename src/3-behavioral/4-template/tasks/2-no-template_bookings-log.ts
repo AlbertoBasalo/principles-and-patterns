@@ -1,50 +1,36 @@
-// To Do: clean to use as template
+// ! npm run 3-4-2
 
-export abstract class BusinessTemplate {
-  // protected abstract doPaymentTransaction(payload: string): string;
-  // protected abstract performBusinessAction(payload: string): string;
-  // protected sendNotification(payload = ""): void {
-  //   console.log("✅ Done " + payload);
-  // }
-  // public execute(payload: string): string {
-  //   console.log("ℹ️  starting business action");
-  //   let businessResult = "";
-  //   try {
-  //     businessResult = this.doMainLogic(payload);
-  //   } catch (error) {
-  //     console.log("ℹ️ 😵‍💫 error: " + error);
-  //   }
-  //   return businessResult;
-  // }
-  // private doMainLogic(payload: string): string {
-  //   const paymentResult = this.doPaymentTransaction(payload);
-  //   console.log("ℹ️  payment done");
-  //   const businessResult = this.performBusinessAction(paymentResult);
-  //   console.log("ℹ️  action done");
-  //   this.sendNotification(businessResult);
-  //   console.log("ℹ️  notification done");
-  //   return businessResult;
-  // }
-}
-
-export class BookingTrip extends BusinessTemplate {
-  protected doPaymentTransaction(payload: string): string {
-    return "💸  Paying trip";
-  }
-  protected performBusinessAction(): string {
-    return "🚀 Booking trip";
-  }
-  protected override sendNotification(payload: string): void {
-    console.log("📧 Trip booked");
+export class BookingTrip {
+  public execute(destination: string): string {
+    try {
+      const paymentResult = "💸  Paying trip to " + destination;
+      console.log("ℹ️  transaction processed");
+      const businessResult = "🚀 Booking trip " + paymentResult;
+      console.log("ℹ️  action done");
+      console.log("📧 Trip booked " + businessResult);
+      console.log("ℹ️  notification sent");
+      return businessResult;
+    } catch (error) {
+      console.log("ℹ️ 😵‍💫 error: " + error);
+      return "";
+    }
   }
 }
 
-export class CancelTrip extends BusinessTemplate {
-  protected doPaymentTransaction(payload: string): string {
-    return "🤑  Refunding trip";
-  }
-  protected override performBusinessAction(): string {
-    return "😭  Cancelling trip";
+export class CancelTrip {
+  public execute(destination: string): string {
+    try {
+      const paymentResult = "🤑  Refunding trip to " + destination;
+      console.log("ℹ️  transaction processed");
+      const businessResult = "😭  Cancelling trip " + paymentResult;
+      console.log("ℹ️  action done");
+      console.log("✅ Done " + businessResult);
+      console.log("ℹ️  notification sent");
+      return businessResult;
+    } catch (error) {
+      console.log("ℹ️ 😵‍💫 error: " + error);
+      return "";
+    }
   }
 }
 

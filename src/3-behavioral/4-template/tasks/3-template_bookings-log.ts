@@ -1,49 +1,47 @@
+// ! npm run 3-4-3
+
 export abstract class BusinessTemplate {
-  protected abstract doPaymentTransaction(payload: string): string;
-  protected abstract performBusinessAction(payload: string): string;
-  protected sendNotification(payload = ""): void {
-    console.log("✅ Done " + payload);
-  }
   public execute(payload: string): string {
-    console.log("ℹ️  starting business action");
-    let businessResult = "";
     try {
-      businessResult = this.doMainLogic(payload);
+      const paymentResult = this.processTransaction(payload);
+      console.log("ℹ️  transaction processed");
+      const businessResult = this.doBusinessAction(paymentResult);
+      console.log("ℹ️  action done");
+      this.sendNotification(businessResult);
+      console.log("ℹ️  notification sent");
+      return businessResult;
     } catch (error) {
       console.log("ℹ️ 😵‍💫 error: " + error);
+      return "";
     }
-    return businessResult;
   }
-
-  private doMainLogic(payload: string): string {
-    const paymentResult = this.doPaymentTransaction(payload);
-    console.log("ℹ️  payment done");
-    const businessResult = this.performBusinessAction(paymentResult);
-    console.log("ℹ️  action done");
-    this.sendNotification(businessResult);
-    console.log("ℹ️  notification done");
-    return businessResult;
+  //* mandatory steps
+  protected abstract processTransaction(payload: string): string;
+  protected abstract doBusinessAction(payload: string): string;
+  // * default implementation if not overridden
+  protected sendNotification(payload = ""): void {
+    console.log("✅ Done " + payload);
   }
 }
 
 export class BookingTrip extends BusinessTemplate {
-  protected doPaymentTransaction(payload: string): string {
-    return "💸  Paying trip";
+  protected processTransaction(destination: string): string {
+    return "💸  Paying trip to " + destination;
   }
-  protected performBusinessAction(): string {
-    return "🚀 Booking trip";
+  protected doBusinessAction(payment: string): string {
+    return "🚀 Booking trip " + payment;
   }
-  protected override sendNotification(payload: string): void {
-    console.log("📧 Trip booked");
+  protected override sendNotification(booking: string): void {
+    console.log("📧 Trip booked " + booking);
   }
 }
 
 export class CancelTrip extends BusinessTemplate {
-  protected doPaymentTransaction(payload: string): string {
-    return "🤑  Refunding trip";
+  protected processTransaction(destination: string): string {
+    return "🤑  Refunding trip " + destination;
   }
-  protected override performBusinessAction(): string {
-    return "😭  Cancelling trip";
+  protected override doBusinessAction(refund: string): string {
+    return "😭  Cancelling trip " + refund;
   }
 }
 
