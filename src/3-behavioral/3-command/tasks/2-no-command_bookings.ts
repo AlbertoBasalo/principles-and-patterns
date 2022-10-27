@@ -1,13 +1,9 @@
-import { Invoker } from "./invoker";
-
-// ToDo: BookingTripCommand;
-// ToDo: CancelTripCommand
 export class Client {
   public static main() {
-    const invoker = new Invoker();
-    // book a trip to the moon
+    // book a trip to mars
     // cancel
-    // book to mars
+    // book a trip to the moon
+    // try to undo
     // print history
   }
 }

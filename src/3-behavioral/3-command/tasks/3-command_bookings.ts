@@ -7,47 +7,42 @@ import { Agency, Booking } from "./receiver";
 // * wrapping the receiver(the agency in this case)
 
 export class BookingTripCommand implements Command {
-  private receiver = new Agency();
-  public execute(payload: string): string {
-    const result = this.receiver.createBooking(payload);
+  public receiver = new Agency();
+
+  constructor(public payload: string) {}
+
+  public execute(): string {
+    const result = this.receiver.createBooking(this.payload);
     return JSON.stringify(result);
   }
 }
 
 export class CancelTripCommand implements Command {
-  private receiver = new Agency();
-  public execute(payload: string): string {
-    const booking = JSON.parse(payload) as Booking;
-    if (!booking) {
+  public receiver = new Agency();
+  public payload: Booking;
+
+  constructor(payload: string) {
+    const bookingAsBooking = JSON.parse(payload) as Booking;
+    if (!bookingAsBooking) {
       throw new Error("Invalid payload");
     }
-    const result = this.receiver.cancelBooking(booking);
+    this.payload = bookingAsBooking;
+  }
+
+  public execute(): string {
+    const result = this.receiver.cancelBooking(this.payload);
     return JSON.stringify(result);
   }
 }
 
 export class Client {
   public static main() {
-    const invoker = Client.buildInvoker();
-    const booking = invoker.dispatch("booking", "The Moon");
-    invoker.dispatch("cancel", booking);
-    invoker.undo(); // alternate way if available
-    invoker.dispatch("booking", "Mars");
-    invoker.printHistory();
-    Client.doMore(invoker);
-  }
-
-  private static buildInvoker(): Invoker {
     const invoker = new Invoker();
-    invoker.register("booking", new BookingTripCommand());
-    invoker.register("cancel", new CancelTripCommand());
-    return invoker;
-  }
-
-  private static doMore(invoker: Invoker) {
+    const booking = invoker.dispatch(new BookingTripCommand("Trip to Mars"));
+    invoker.dispatch(new CancelTripCommand(booking));
+    // ! alternate way if available
+    invoker.dispatch(new BookingTripCommand("Trip to The Moon"));
     invoker.undo();
-    invoker.printHistory();
-    invoker.redo();
     invoker.printHistory();
   }
 }
