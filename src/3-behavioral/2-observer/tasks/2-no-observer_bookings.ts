@@ -1,7 +1,8 @@
+// ! npm run 3-2-2
 import { Agency, Booking } from "./agency";
 import { Logger } from "./logger";
 
-// ToDo : use a subject-observer pair to avoid use logger directly
+// ToDo : 🤢 use a subject-observer pair to avoid use logger directly
 
 export class Client {
   private agency: Agency;
@@ -13,6 +14,7 @@ export class Client {
   public bookTrip(trip: string, price: number): Booking | undefined {
     try {
       const result = this.agency.createBooking(trip, price);
+      // ToDo : 🤢 no single responsibility
       this.logger.log({
         category: "info",
         message: "booking-created" + " - " + JSON.stringify(result),
@@ -20,6 +22,7 @@ export class Client {
       });
       return result;
     } catch (error) {
+      // ToDo : 🤢 prone to duplicated code
       this.logger.log({
         category: "error",
         message: "exception" + " - " + (error as Error).message,

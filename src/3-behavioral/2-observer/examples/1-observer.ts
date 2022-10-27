@@ -1,6 +1,7 @@
+// ! npm run 3-2-1
 export interface Observable {
   subscribe(observer: Observer): void;
-  unSubscribe(observer: Observer): void;
+  unSubscribe?(observer: Observer): void;
   notifyObservers(message: string): void;
 }
 
@@ -8,7 +9,7 @@ export interface Observer {
   notify(message: string): void;
 }
 
-// aka publisher
+// * aka publisher
 export class Subject implements Observable {
   private observers: Observer[] = [];
 
@@ -23,9 +24,10 @@ export class Subject implements Observable {
   }
 }
 
-// aka subscriber
+// * aka subscribers
 export class ConcreteObserverA implements Observer {
   public notify(message: string): void {
+    // * the callback logic
     console.log(`${message} 📩 received by 🅰️`);
   }
 }

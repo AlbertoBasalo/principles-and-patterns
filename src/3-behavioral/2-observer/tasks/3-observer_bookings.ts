@@ -1,14 +1,15 @@
-import { Agency, Booking } from "./agency";
+// ! npm run 3-2-3
+import { Booking } from "./agency";
 import { AgencySubject } from "./agency.subject";
 import { LoggerObserver } from "./logger.observer";
 
 export class Client {
-  private agency: Agency;
   private agencySubject: AgencySubject;
   constructor() {
-    this.agency = new Agency();
-    this.agencySubject = new AgencySubject(this.agency);
+    // ToDo: subscription could be done in a separate class...
+    this.agencySubject = new AgencySubject();
     const loggerObserver = new LoggerObserver();
+    // * the subject will notify the observers
     this.agencySubject.subscribe(loggerObserver);
   }
   public bookTrip(trip: string, price: number): Booking | undefined {

@@ -1,5 +1,6 @@
 /* eslint-disable max-params */
-type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
+export type BookingStatus = "Pending" | "Confirmed" | "Cancelled" | "";
+
 export class Booking {
   constructor(
     public id: number,

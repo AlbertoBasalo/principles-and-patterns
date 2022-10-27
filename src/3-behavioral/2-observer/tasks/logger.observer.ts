@@ -9,7 +9,9 @@ export interface Observer {
  */
 export class LoggerObserver implements Observer {
   private logger: Logger = new Logger();
+
   public notify(businessEvent: string, message: string) {
+    // * the callback logic
     const entry: LogEntry = {
       category: businessEvent === "exception" ? "error" : "info",
       message: businessEvent + " - " + message,
