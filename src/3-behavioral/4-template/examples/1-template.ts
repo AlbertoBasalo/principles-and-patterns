@@ -1,3 +1,4 @@
+// ! npm run 3-4-1
 export abstract class Template {
   public hook1(): void {} // could be overridden
   public abstract step1(): void; // must be implemented

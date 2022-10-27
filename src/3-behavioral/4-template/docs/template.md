@@ -6,15 +6,6 @@
 
 - https://sbcode.net/typescript/template/
 
-### Examples
-
-```bash
-# Examples
-npm run 3-4-1
-# Tasks
-npm run 3-4-2
-```
-
 ### Tasks
 
-- [ ] Create a template to log business logic
+- [x] Create a template to log business logic
