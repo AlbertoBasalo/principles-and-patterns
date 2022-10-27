@@ -1,9 +1,14 @@
+// ! npm run 3-3-3
 import { Command, Invoker } from "./invoker";
 import { Agency, Booking } from "./receiver";
+
+// * commands classes
+// * can be a kind of adapters
+// * wrapping the receiver(the agency in this case)
+
 export class BookingTripCommand implements Command {
   private receiver = new Agency();
   public execute(payload: string): string {
-    console.log(`🛩️ Booking trip: ${payload}`);
     const result = this.receiver.createBooking(payload);
     return JSON.stringify(result);
   }
@@ -12,15 +17,12 @@ export class BookingTripCommand implements Command {
 export class CancelTripCommand implements Command {
   private receiver = new Agency();
   public execute(payload: string): string {
-    const parsedPayload = JSON.parse(payload);
-    const booking = parsedPayload as Booking;
-    if (booking) {
-      console.log(`😭 Cancelling trip: ${payload}`);
-      const result = this.receiver.cancelBooking(booking);
-      return JSON.stringify(result);
-    } else {
+    const booking = JSON.parse(payload) as Booking;
+    if (!booking) {
       throw new Error("Invalid payload");
     }
+    const result = this.receiver.cancelBooking(booking);
+    return JSON.stringify(result);
   }
 }
 

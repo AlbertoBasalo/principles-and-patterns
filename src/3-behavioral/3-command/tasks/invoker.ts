@@ -3,8 +3,13 @@ export interface Command {
   undo?(payload: string): void;
 }
 
+// * A state management class that orchestrate and tracks all business actions
+// ! could be simplified without history and redo/undo
+
 export class Invoker {
+  // * all available actions
   private catalog: { action: string; command: Command }[] = [];
+  // */ all executed actions (a log of business actions)
   private history: { timestamp: number; action: string; payload: string; result: string }[] = [];
 
   public register(action: string, command: Command) {
@@ -21,6 +26,8 @@ export class Invoker {
     this.history.push({ timestamp: new Date().getTime(), action, payload, result });
     return result;
   }
+
+  // ! the following are generic methods not related to the command pattern
 
   public undo() {
     const lastAction = this.history.at(-1);
