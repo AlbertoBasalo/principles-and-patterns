@@ -1,44 +1,51 @@
+// ! npm run 3-1-1
 export interface Strategy {
   doStuff(param: string): string;
 }
-
 export class ConcreteStrategyA implements Strategy {
   public doStuff(param: string): string {
     return `${param} 🅰️`;
   }
 }
-
 export class ConcreteStrategyB implements Strategy {
   public doStuff(param: string): string {
     return `${param.toLowerCase()} 🅱️`;
   }
 }
 
+// * 🤩 encapsulated decisions maker
 export class Context {
-  private strategy!: Strategy;
-  constructor(strategy?: Strategy) {
-    if (!strategy) {
-      this.strategy = this.chooseFromEnvironment();
-    } else {
-      this.strategy = strategy;
-    }
+  private static strategy: Strategy = Context.chooseByEnvironment();
+  public static getStrategy(): Strategy {
+    return Context.strategy;
   }
-  private chooseFromEnvironment(): Strategy {
+  public getStrategy(criteria: unknown): Strategy {
+    return this.chooseByCriteria(criteria);
+  }
+  private static chooseByEnvironment(): Strategy {
+    // ToDo: choose a strategy based on environment
     return new ConcreteStrategyA();
   }
-
-  public setStrategy(strategy: Strategy): void {
-    this.strategy = strategy;
+  private chooseByCriteria(criteria: unknown): Strategy {
+    // ToDo: choose a strategy based on criteria value
+    return new ConcreteStrategyB();
   }
+}
+
+class Client {
+  private strategy!: Strategy;
 
   public doStuff(param: string): string {
+    this.strategy = Context.getStrategy();
+    return this.strategy.doStuff(param);
+  }
+  public doMoreStuff(criteria: string, param: string): string {
+    this.strategy = new Context().getStrategy(criteria);
     return this.strategy.doStuff(param);
   }
 }
 
-let context = new Context();
-console.log(context.doStuff("Hello")); // Hello 🅰️
-context.setStrategy(new ConcreteStrategyB());
-console.log(context.doStuff("Hello")); // hello 🅱️
-context = new Context(new ConcreteStrategyA());
-console.log(context.doStuff("Hello")); // Hello 🅰️
+// main program
+const client = new Client();
+console.log(client.doStuff("Hello")); // Hello 🅰️
+console.log(client.doMoreStuff("B", "Hello")); // hello 🅱️

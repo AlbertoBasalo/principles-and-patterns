@@ -1,3 +1,4 @@
+// ! npm run 3-1-4
 import { ConsoleWriter, Formatter, JsonFormatter, LogEntry, SimpleFormatter, TextFileWriter, Writer } from "./logger";
 
 export type EntryStrategy = { writer: Writer; formatter: Formatter };
@@ -6,8 +7,8 @@ export class EntryStrategyFactory {
   private static defaultStrategy: EntryStrategy = { writer: new ConsoleWriter(), formatter: new SimpleFormatter() };
   private static errorStrategy: EntryStrategy = { writer: new TextFileWriter(), formatter: new JsonFormatter() };
 
-  public static chooseStrategy(entry: LogEntry): EntryStrategy {
-    // ! chosen on parameter basis
+  public static chooseEntryStrategy(entry: LogEntry): EntryStrategy {
+    // * 🤩 encapsulated decision (chosen on criteria basis)
     if (entry.category === "error") {
       return EntryStrategyFactory.errorStrategy;
     } else {
@@ -19,7 +20,7 @@ export class EntryStrategyFactory {
 // ! redefine Logger class
 export class Logger {
   public log(entry: LogEntry) {
-    const strategy = EntryStrategyFactory.chooseStrategy(entry);
+    const strategy = EntryStrategyFactory.chooseEntryStrategy(entry);
     strategy.writer.write(strategy.formatter.format(entry));
   }
 }
